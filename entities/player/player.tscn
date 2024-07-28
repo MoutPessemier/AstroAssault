@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bd0ot0mn1b1s4"]
+
+[ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_wj01d"]
+[ext_resource type="Script" path="res://components/move_input_component.gd" id="4_g62ex"]
+[ext_resource type="Resource" uid="uid://fyrde4v6qqut" path="res://entities/player/ship_move_stats.tres" id="5_qhdno"]
+[ext_resource type="Script" path="res://components/position_clamp_component.gd" id="6_s4vh4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rq8c"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vqwn"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsdbs"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ielsg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rq8c")
+}],
+"loop": true,
+"name": &"center",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vqwn")
+}],
+"loop": true,
+"name": &"turn_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsdbs")
+}],
+"loop": true,
+"name": &"turn_right",
+"speed": 5.0
+}]
+
+[node name="Player" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ielsg")
+animation = &"center"
+autoplay = "center"
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("3_wj01d")
+entity = NodePath("..")
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("4_g62ex")
+move_stats = ExtResource("5_qhdno")
+move_component = NodePath("../MoveComponent")
+
+[node name="PositionClampComponent" type="Node2D" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("6_s4vh4")
+entity = NodePath("..")
