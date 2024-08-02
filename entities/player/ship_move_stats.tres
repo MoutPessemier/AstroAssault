@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_4gtlr")
-speed = 75
+speed = 100
