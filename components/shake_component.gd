@@ -10,8 +10,7 @@ var current_shake = 0
 func tween_shake():
 	current_shake = shake_amount
 	var tween = create_tween()
-# TODO: shake does not exist on Node
-	tween.tween_property(self, "shake", 0.0, shake_duration).from_current()
+	tween.tween_property(self, "current_shake", 0.0, shake_duration).from_current()
 
 func _physics_process(delta: float) -> void:
 	sprite.position = Vector2(randf_range(-current_shake, current_shake), randf_range(-current_shake, current_shake))

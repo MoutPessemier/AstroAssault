@@ -13,13 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://388o3eg8itei" path="res://resources/effects/explosion/explosion_effect.tscn" id="11_h7n27"]
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="12_hklcl"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("move_component", "scale_component", "health_component", "visible_on_screen_notifier", "flash_component", "hurtbox_component", "hitbox_component")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("move_component", "scale_component", "health_component", "visible_on_screen_notifier", "flash_component", "shake_component", "hurtbox_component", "hitbox_component")]
 script = ExtResource("1_20di1")
 move_component = NodePath("MoveComponent")
 scale_component = NodePath("ScaleComponent")
 health_component = NodePath("HealthComponent")
 visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
 flash_component = NodePath("FlashComponent")
+shake_component = NodePath("ShakeComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 hitbox_component = NodePath("HitboxComponent")
 

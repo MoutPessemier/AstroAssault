@@ -13,6 +13,6 @@ func _ready() -> void:
 	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
 		scale_component.tween_scale()
 		flash_component.flash()
-		#shake_component.tween_shake()
+		shake_component.tween_shake()
 	)
 	health_component.death.connect(queue_free)
