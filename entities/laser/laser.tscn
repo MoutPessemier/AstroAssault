@@ -1,15 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqajvowk3co3s"]
+[gd_scene load_steps=9 format=3 uid="uid://bqajvowk3co3s"]
 
-[ext_resource type="Texture2D" uid="uid://dhtwdih8eoqqu" path="res://assets/sprites/laser.png" id="1_c57co"]
+[ext_resource type="Texture2D" uid="uid://dhtwdih8eoqqu" path="res://assets/sprites/Laser.png" id="1_c57co"]
 [ext_resource type="Script" path="res://entities/laser/laser.gd" id="1_nb7gr"]
-[ext_resource type="Material" uid="uid://bymi3a4ifgof2" path="res://resources/effects/white_flash_material.tres" id="1_sjys8"]
+[ext_resource type="Material" uid="uid://bymi3a4ifgof2" path="res://resources/effects/white_flash/white_flash_material.tres" id="1_sjys8"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="2_74b61"]
 [ext_resource type="Script" path="res://components/scale_component.gd" id="4_je62e"]
 [ext_resource type="Script" path="res://components/flash_component.gd" id="5_2ooha"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="7_hftkk"]
 
-[node name="Laser" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihdjf"]
+radius = 3.0
+height = 10.0
+
+[node name="Laser" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier", "scale_component", "flash_component", "hitbox_component")]
 material = ExtResource("1_sjys8")
 script = ExtResource("1_nb7gr")
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+scale_component = NodePath("ScaleComponent")
+flash_component = NodePath("FlashComponent")
+hitbox_component = NodePath("HitboxComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_c57co")
@@ -33,3 +42,11 @@ scale_duration = 0.75
 script = ExtResource("5_2ooha")
 sprite = NodePath("../Sprite2D")
 flash_duration = 0.1
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("7_hftkk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape2D_ihdjf")

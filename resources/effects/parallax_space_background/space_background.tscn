@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctjdpcs84lgiq"]
 
-[ext_resource type="Script" path="res://resources/effects/space_background.gd" id="1_bdx34"]
-[ext_resource type="Texture2D" uid="uid://dvf4rslbs7giw" path="res://assets/sprites/space.png" id="1_bednd"]
-[ext_resource type="Texture2D" uid="uid://m2lt1uuj5lr0" path="res://assets/sprites/stars_far.png" id="2_wv1j3"]
-[ext_resource type="Texture2D" uid="uid://bgdiraf5dit2b" path="res://assets/sprites/stars_near.png" id="3_jrpaa"]
+[ext_resource type="Script" path="res://resources/effects/parallax_space_background/space_background.gd" id="1_bdx34"]
+[ext_resource type="Texture2D" uid="uid://dvf4rslbs7giw" path="res://assets/sprites/Space.png" id="1_bednd"]
+[ext_resource type="Texture2D" uid="uid://m2lt1uuj5lr0" path="res://assets/sprites/StarsFar.png" id="2_wv1j3"]
+[ext_resource type="Texture2D" uid="uid://bgdiraf5dit2b" path="res://assets/sprites/StarsNear.png" id="3_jrpaa"]
 
 [node name="SpaceBackground" type="ParallaxBackground" node_paths=PackedStringArray("space_layer", "far_stars_layer", "close_stars_layer")]
 script = ExtResource("1_bdx34")
