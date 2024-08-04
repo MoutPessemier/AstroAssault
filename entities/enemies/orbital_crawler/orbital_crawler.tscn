@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://b80snw277uh6y"]
+
+[ext_resource type="PackedScene" uid="uid://gi4d7ene1yry" path="res://entities/enemies/enemy.tscn" id="1_op51t"]
+[ext_resource type="Texture2D" uid="uid://mp0o6pdmqicx" path="res://assets/sprites/Octo.png" id="2_wueya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vd55"]
+atlas = ExtResource("2_wueya")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5qma"]
+atlas = ExtResource("2_wueya")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tttl"]
+atlas = ExtResource("2_wueya")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xj0tn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vd55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5qma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tttl")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bkcd"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1p85y"]
+radius = 7.0
+
+[node name="OrbitalCrawler" instance=ExtResource("1_op51t")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_xj0tn")
+animation = &"walking"
+autoplay = "walking"
+frame_progress = 0.356034
+
+[node name="MoveComponent" parent="." index="1"]
+velocity = Vector2(2.08165e-12, 40)
+
+[node name="HealthComponent" parent="." index="3"]
+health = 3
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(0.8, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_7bkcd")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_1p85y")
+debug_color = Color(1, 0, 0, 0.419608)
