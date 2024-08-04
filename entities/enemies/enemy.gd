@@ -7,6 +7,7 @@ extends Node2D
 @export var shake_component: ShakeComponent
 @export var hurtbox_component: HurtboxComponent
 @export var hitbox_component: HitboxComponent
+@export var destroyed_component: DestroyedComponent
 
 func _ready() -> void:
 	visible_on_screen_notifier.screen_exited.connect(queue_free)
@@ -16,3 +17,4 @@ func _ready() -> void:
 		shake_component.tween_shake()
 	)
 	health_component.death.connect(queue_free)
+	hitbox_component.hit_hurtbox.connect(destroyed_component.destroy.unbind(1))

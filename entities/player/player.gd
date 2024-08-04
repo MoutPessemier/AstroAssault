@@ -3,7 +3,7 @@ extends Node2D
 
 @export var left_gun: Marker2D
 @export var right_gun: Marker2D
-@export var spawner_component: SpawnerComponent
+@export var laser_spawner: SpawnerComponent
 @export var fire_rate_timer: Timer
 @export var scale_component: ScaleComponent
 @export var ship: AnimatedSprite2D
@@ -14,8 +14,8 @@ func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
 
 func fire_lasers() -> void:
-	spawner_component.spawn(left_gun.global_position)
-	spawner_component.spawn(right_gun.global_position)
+	laser_spawner.spawn(left_gun.global_position)
+	laser_spawner.spawn(right_gun.global_position)
 	scale_component.tween_scale()
 
 func _process(delta: float) -> void:
