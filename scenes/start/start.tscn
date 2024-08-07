@@ -74,4 +74,4 @@ region_rect = Rect2(16, 2.08165e-12, 16, 16)
 position = Vector2(80, 232)
 sprite_frames = SubResource("SpriteFrames_0wkqu")
 autoplay = "default"
-frame_progress = 0.132929
+frame_progress = 0.706137

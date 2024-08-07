@@ -172,6 +172,7 @@ sprite = NodePath("../Anchor")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("11_rtm73")
+health = 3
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 collision_layer = 2
