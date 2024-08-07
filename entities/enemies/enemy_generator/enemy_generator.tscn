@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf01nllue06so"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_generator/enemy_generator.gd" id="1_ymvie"]
+[ext_resource type="PackedScene" uid="uid://b80snw277uh6y" path="res://entities/enemies/orbital_crawler/orbital_crawler.tscn" id="2_m07cs"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="2_xdkkd"]
+[ext_resource type="PackedScene" uid="uid://c10l8hysl376j" path="res://entities/enemies/jolt_jumper/jolt_jumper.tscn" id="3_gy36u"]
+
+[node name="EnemyGenerator" type="Node2D" node_paths=PackedStringArray("spawner_component", "orbital_crawler_spawn_timer", "jolt_jumper_spawn_timer")]
+script = ExtResource("1_ymvie")
+spawner_component = NodePath("SpawnerComponent")
+orbital_crawler_spawn_timer = NodePath("OrbitalCrawlerSpawnTimer")
+jolt_jumper_spawn_timer = NodePath("JoltJumperSpawnTimer")
+ORBITAL_CRAWLER_SCENE = ExtResource("2_m07cs")
+JOLT_JUMPER_SCENE = ExtResource("3_gy36u")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("2_xdkkd")
+
+[node name="OrbitalCrawlerSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="JoltJumperSpawnTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
