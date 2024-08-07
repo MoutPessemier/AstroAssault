@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://c10l8hysl376j"]
+
+[ext_resource type="PackedScene" uid="uid://gi4d7ene1yry" path="res://entities/enemies/enemy.tscn" id="1_3f785"]
+[ext_resource type="Texture2D" uid="uid://db42em5588h4k" path="res://assets/sprites/JoltJumper.png" id="2_n80l8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok82t"]
+atlas = ExtResource("2_n80l8")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raks7"]
+atlas = ExtResource("2_n80l8")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6r23"]
+atlas = ExtResource("2_n80l8")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuuca"]
+atlas = ExtResource("2_n80l8")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nahxs"]
+atlas = ExtResource("2_n80l8")
+region = Rect2(64, 0, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_af4ej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok82t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raks7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6r23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuuca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nahxs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8o5jl"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ajjwd"]
+radius = 7.0
+
+[node name="JoltJumper" instance=ExtResource("1_3f785")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_af4ej")
+autoplay = "default"
+frame_progress = 0.224848
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(4.17233e-07, 0)
+scale = Vector2(0.8, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_8o5jl")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_ajjwd")
+debug_color = Color(1, 0, 0, 0.419608)
