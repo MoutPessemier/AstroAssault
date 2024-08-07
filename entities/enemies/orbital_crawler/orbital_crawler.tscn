@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b80snw277uh6y"]
 
 [ext_resource type="PackedScene" uid="uid://gi4d7ene1yry" path="res://entities/enemies/enemy.tscn" id="1_op51t"]
-[ext_resource type="Texture2D" uid="uid://mp0o6pdmqicx" path="res://assets/sprites/Octo.png" id="2_wueya"]
+[ext_resource type="Texture2D" uid="uid://mp0o6pdmqicx" path="res://assets/sprites/OrbitalCrawler.png" id="2_wueya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vd55"]
 atlas = ExtResource("2_wueya")
