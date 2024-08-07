@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdcxfg4fhdco"]
+
+[ext_resource type="Script" path="res://scenes/start/start.gd" id="1_ohg4s"]
+[ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="2_dr4c6"]
+[ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/title_label_settings.tres" id="3_iwlcl"]
+[ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/default_label_settings.tres" id="4_umobt"]
+[ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="5_qe036"]
+[ext_resource type="Texture2D" uid="uid://d0fsfkgscpuf8" path="res://assets/sprites/Fire.png" id="6_gtnbe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4unbk"]
+atlas = ExtResource("6_gtnbe")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux2kt"]
+atlas = ExtResource("6_gtnbe")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wkqu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4unbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux2kt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ohg4s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Astro Assault"
+label_settings = ExtResource("3_iwlcl")
+horizontal_alignment = 1
+
+[node name="StartLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PRESS 'SPACE' TO PLAY"
+label_settings = ExtResource("4_umobt")
+horizontal_alignment = 1
+
+[node name="SpaceBackground" parent="." instance=ExtResource("2_dr4c6")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80, 216)
+texture = ExtResource("5_qe036")
+region_enabled = true
+region_rect = Rect2(16, 2.08165e-12, 16, 16)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 232)
+sprite_frames = SubResource("SpriteFrames_0wkqu")
+autoplay = "default"
+frame_progress = 0.132929
