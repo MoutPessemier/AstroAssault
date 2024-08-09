@@ -14,9 +14,11 @@ func _ready() -> void:
 	high_score_value.text = str(game_stats.high_score)
 
 func play_again() -> void:
+		DataManager.save_game()
 	game_stats.score = 0
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 
 func quit() -> void:
+	DataManager.save_game()
 	game_stats.score = 0
 	get_tree().change_scene_to_file("res://scenes/start/start.tscn")
