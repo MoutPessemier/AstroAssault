@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc86fyabcpkse"]
+[gd_scene load_steps=8 format=3 uid="uid://bc86fyabcpkse"]
 
 [ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="1_eya3k"]
 [ext_resource type="Script" path="res://scenes/death/death.gd" id="1_hmjo0"]
-[ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/title_label_settings.tres" id="2_0igq3"]
-[ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/default_label_settings.tres" id="3_8qxvg"]
+[ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/label_styles/title_label_settings.tres" id="2_0igq3"]
+[ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="2_10dkn"]
+[ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="3_8qxvg"]
 [ext_resource type="Texture2D" uid="uid://d0ghkcdvatucv" path="res://assets/ui/buttons/PlayButton.png" id="4_s3ohi"]
 [ext_resource type="Texture2D" uid="uid://3tl7wlugnqu8" path="res://assets/ui/buttons/QuitButton.png" id="5_cfyo2"]
 
-[node name="Death" type="Control" node_paths=PackedStringArray("score_label", "play_again_button", "quit_button")]
+[node name="Death" type="Control" node_paths=PackedStringArray("play_again_button", "quit_button", "score_value", "high_score_value")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,9 +16,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hmjo0")
-score_label = NodePath("CenterContainer/VBoxContainer/LabelContainer/ScoreLabel")
-play_again_button = NodePath("CenterContainer/VBoxContainer/ButtonContainer/PlayAgainButton")
-quit_button = NodePath("CenterContainer/VBoxContainer/ButtonContainer/QuitButton")
+play_again_button = NodePath("CenterContainer/VBoxContainer/ButtonVBoxContainer/PlayAgainButton")
+quit_button = NodePath("CenterContainer/VBoxContainer/ButtonVBoxContainer/QuitButton")
+game_stats = ExtResource("2_10dkn")
+score_value = NodePath("CenterContainer/VBoxContainer/LabelVBoxContainer/ScoreHBoxContainer/ScoreValue")
+high_score_value = NodePath("CenterContainer/VBoxContainer/LabelVBoxContainer/HighScoreHBoxContainer/HighScoreValue")
 
 [node name="SpaceBackground" parent="." instance=ExtResource("1_eya3k")]
 
@@ -33,31 +36,59 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LabelContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="LabelVBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer/LabelContainer"]
+[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer/LabelVBoxContainer"]
 layout_mode = 2
 text = "GAME OVER"
 label_settings = ExtResource("2_0igq3")
 horizontal_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/LabelContainer"]
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/LabelVBoxContainer"]
 layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/LabelVBoxContainer/ScoreHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Score:"
+label_settings = ExtResource("3_8qxvg")
+
+[node name="ScoreValue" type="Label" parent="CenterContainer/VBoxContainer/LabelVBoxContainer/ScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0
+"
 label_settings = ExtResource("3_8qxvg")
 horizontal_alignment = 1
 
-[node name="ButtonContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="HighScoreHBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/LabelVBoxContainer"]
+layout_mode = 2
+
+[node name="HighScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/LabelVBoxContainer/HighScoreHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "High score:"
+label_settings = ExtResource("3_8qxvg")
+
+[node name="HighScoreValue" type="Label" parent="CenterContainer/VBoxContainer/LabelVBoxContainer/HighScoreHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0
+"
+label_settings = ExtResource("3_8qxvg")
+horizontal_alignment = 1
+
+[node name="ButtonVBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="PlayAgainButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="PlayAgainButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonVBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_s3ohi")
 stretch_mode = 3
 
-[node name="QuitButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="QuitButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonVBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_cfyo2")
 stretch_mode = 3

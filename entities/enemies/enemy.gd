@@ -8,13 +8,20 @@ extends Node2D
 @export var hurtbox_component: HurtboxComponent
 @export var hitbox_component: HitboxComponent
 @export var destroyed_component: DestroyedComponent
+@export var score_component: ScoreComponent
 
 func _ready() -> void:
-	visible_on_screen_notifier.screen_exited.connect(queue_free)
+	visible_on_screen_notifier.screen_exited.connect(func():
+		score_component.adjust_score(-1)
+		queue_free()
+	)
 	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
 		scale_component.tween_scale()
 		flash_component.flash()
 		shake_component.tween_shake()
 	)
-	health_component.death.connect(queue_free)
+	health_component.death.connect(func():
+		score_component.adjust_score()
+		queue_free()
+	)
 	hitbox_component.hit_hurtbox.connect(destroyed_component.destroy.unbind(1))

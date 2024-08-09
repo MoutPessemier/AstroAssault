@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gi4d7ene1yry"]
+[gd_scene load_steps=15 format=3 uid="uid://gi4d7ene1yry"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_20di1"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="1_adapq"]
@@ -12,8 +12,10 @@
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="10_b8tye"]
 [ext_resource type="PackedScene" uid="uid://388o3eg8itei" path="res://resources/effects/explosion/explosion_effect.tscn" id="11_h7n27"]
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="12_hklcl"]
+[ext_resource type="Script" path="res://components/score_component.gd" id="13_tfy0w"]
+[ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="14_v50mu"]
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("move_component", "scale_component", "health_component", "visible_on_screen_notifier", "flash_component", "shake_component", "hurtbox_component", "hitbox_component", "destroyed_component")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("move_component", "scale_component", "health_component", "visible_on_screen_notifier", "flash_component", "shake_component", "hurtbox_component", "hitbox_component", "destroyed_component", "score_component")]
 script = ExtResource("1_20di1")
 move_component = NodePath("MoveComponent")
 scale_component = NodePath("ScaleComponent")
@@ -24,6 +26,7 @@ shake_component = NodePath("ShakeComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 hitbox_component = NodePath("HitboxComponent")
 destroyed_component = NodePath("DestroyedComponent")
+score_component = NodePath("ScoreComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -74,3 +77,7 @@ script = ExtResource("12_hklcl")
 entity = NodePath("..")
 health_component = NodePath("../HealthComponent")
 destroy_effect_spawner_component = NodePath("../SpawnerComponent")
+
+[node name="ScoreComponent" type="Node" parent="."]
+script = ExtResource("13_tfy0w")
+game_stats = ExtResource("14_v50mu")

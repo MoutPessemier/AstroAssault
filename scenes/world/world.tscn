@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu0wpautkv3cv"]
+[gd_scene load_steps=7 format=3 uid="uid://bu0wpautkv3cv"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_80o16"]
 [ext_resource type="PackedScene" uid="uid://bd0ot0mn1b1s4" path="res://entities/player/player.tscn" id="1_ccshm"]
 [ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="2_3frpy"]
+[ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="2_qbonl"]
 [ext_resource type="PackedScene" uid="uid://cf01nllue06so" path="res://entities/enemies/enemy_generator/enemy_generator.tscn" id="3_w38xt"]
+[ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="5_852au"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label")]
 script = ExtResource("1_80o16")
 player = NodePath("Player")
+score_label = NodePath("ScoreLabel")
+game_stats = ExtResource("2_qbonl")
 
 [node name="Player" parent="." instance=ExtResource("1_ccshm")]
 position = Vector2(80, 216)
@@ -15,3 +19,12 @@ position = Vector2(80, 216)
 [node name="SpaceBackground" parent="." instance=ExtResource("2_3frpy")]
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_w38xt")]
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 160.0
+offset_bottom = 23.0
+text = "Score
+"
+label_settings = ExtResource("5_852au")
+horizontal_alignment = 1
+vertical_alignment = 1
