@@ -12,5 +12,5 @@ func tween_shake():
 	var tween = create_tween()
 	tween.tween_property(self, "current_shake", 0.0, shake_duration).from_current()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	sprite.position = Vector2(randf_range(-current_shake, current_shake), randf_range(-current_shake, current_shake))

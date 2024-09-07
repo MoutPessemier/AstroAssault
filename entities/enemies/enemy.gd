@@ -15,7 +15,7 @@ func _ready() -> void:
 		score_component.adjust_score(-1)
 		queue_free()
 	)
-	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
+	hurtbox_component.hurt.connect(func(_hitbox: HitboxComponent):
 		scale_component.tween_scale()
 		flash_component.flash()
 		shake_component.tween_shake()

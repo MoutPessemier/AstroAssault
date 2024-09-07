@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu0wpautkv3cv"]
+[gd_scene load_steps=8 format=3 uid="uid://bu0wpautkv3cv"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_80o16"]
 [ext_resource type="PackedScene" uid="uid://bd0ot0mn1b1s4" path="res://entities/player/player.tscn" id="1_ccshm"]
@@ -6,12 +6,16 @@
 [ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="2_qbonl"]
 [ext_resource type="PackedScene" uid="uid://cf01nllue06so" path="res://entities/enemies/enemy_generator/enemy_generator.tscn" id="3_w38xt"]
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="5_852au"]
+[ext_resource type="Texture2D" uid="uid://b85817shcvxil" path="res://assets/ui/lives/Life.png" id="7_t425f"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label", "time_label", "elapsed_timer", "lives_label")]
 script = ExtResource("1_80o16")
 player = NodePath("Player")
-score_label = NodePath("ScoreLabel")
+score_label = NodePath("UI/GameStats/VBoxContainer/ScoreLabel")
+time_label = NodePath("UI/GameStats/VBoxContainer/TimeLabel")
 game_stats = ExtResource("2_qbonl")
+elapsed_timer = NodePath("ElapsedTime")
+lives_label = NodePath("UI/Lives/HBoxContainer/LivesLabel")
 
 [node name="Player" parent="." instance=ExtResource("1_ccshm")]
 position = Vector2(80, 216)
@@ -20,11 +24,64 @@ position = Vector2(80, 216)
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_w38xt")]
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="UI" type="HBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.686275)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_right = 160.0
-offset_bottom = 23.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="GameStats" type="MarginContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameStats"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/GameStats/VBoxContainer"]
+layout_mode = 2
 text = "Score
 "
 label_settings = ExtResource("5_852au")
-horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="UI/GameStats/VBoxContainer"]
+layout_mode = 2
+text = "Time"
+label_settings = ExtResource("5_852au")
+vertical_alignment = 1
+
+[node name="BlankSpace" type="Control" parent="UI"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Lives" type="MarginContainer" parent="UI"]
+layout_mode = 2
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Lives"]
+layout_mode = 2
+
+[node name="Sprite" type="TextureRect" parent="UI/Lives/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("7_t425f")
+stretch_mode = 2
+
+[node name="LivesLabel" type="Label" parent="UI/Lives/HBoxContainer"]
+layout_mode = 2
+text = "x3"
+label_settings = ExtResource("5_852au")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ElapsedTime" type="Timer" parent="."]
+autostart = true
+
+[editable path="Player"]

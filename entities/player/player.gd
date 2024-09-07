@@ -18,7 +18,7 @@ func fire_lasers() -> void:
 	laser_spawner.spawn(right_gun.global_position)
 	scale_component.tween_scale()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	animate_ship()
 
 func animate_ship() -> void:

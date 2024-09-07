@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bd0ot0mn1b1s4"]
+[gd_scene load_steps=28 format=3 uid="uid://bd0ot0mn1b1s4"]
 
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_n1qi1"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d0fsfkgscpuf8" path="res://assets/sprites/Fire.png" id="10_1o7v8"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="11_rtm73"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="12_ib07b"]
+[ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="12_wrfkc"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="13_58m31"]
 [ext_resource type="PackedScene" uid="uid://388o3eg8itei" path="res://resources/effects/explosion/explosion_effect.tscn" id="14_mfvtu"]
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="15_2f1n0"]
@@ -186,6 +187,7 @@ polygon = PackedVector2Array(-1, -8, 1, -8, 1, -6, 2, -6, 2, -4, 3, -4, 3, -2, 5
 script = ExtResource("13_58m31")
 health_component = NodePath("../HealthComponent")
 hurtbox_component = NodePath("../HurtboxComponent")
+game_stats = ExtResource("12_wrfkc")
 
 [node name="ExplosionSpawner" type="Node2D" parent="."]
 script = ExtResource("7_j3qg7")
