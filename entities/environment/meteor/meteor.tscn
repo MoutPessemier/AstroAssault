@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7mg5hv3d34hx"]
+
+[ext_resource type="PackedScene" uid="uid://b4ebhvg3q4h6j" path="res://entities/environment/environment.tscn" id="1_lxnv2"]
+[ext_resource type="Texture2D" uid="uid://dd5ubdiuxxo2r" path="res://assets/sprites/Meteor.png" id="2_wa6j5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10pei"]
+atlas = ExtResource("2_wa6j5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbw4b"]
+atlas = ExtResource("2_wa6j5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrg82"]
+atlas = ExtResource("2_wa6j5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3metw"]
+atlas = ExtResource("2_wa6j5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1s4uo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10pei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbw4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrg82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3metw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i74a4"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ai36p"]
+radius = 8.0
+
+[node name="Meteor" instance=ExtResource("1_lxnv2")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_1s4uo")
+autoplay = "default"
+frame_progress = 0.232698
+
+[node name="MoveComponent" parent="." index="1"]
+velocity = Vector2(2.08165e-12, 75)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(4.17233e-07, 4.17233e-07)
+scale = Vector2(0.8, 0.8)
+
+[node name="HitboxComponent" parent="." index="3"]
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_i74a4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_ai36p")

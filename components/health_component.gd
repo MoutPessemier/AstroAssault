@@ -8,5 +8,5 @@ signal death()
 	set(value):
 		health = value
 		health_changed.emit()
-		if health == 0: 
+		if health <= 0: 
 			death.emit()

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cijlneiay8cbw"]
+
+[ext_resource type="PackedScene" uid="uid://b4ebhvg3q4h6j" path="res://entities/environment/environment.tscn" id="1_bpn2c"]
+
+[node name="Shipwreck" instance=ExtResource("1_bpn2c")]

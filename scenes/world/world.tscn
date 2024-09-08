@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bu0wpautkv3cv"]
+[gd_scene load_steps=9 format=3 uid="uid://bu0wpautkv3cv"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_80o16"]
 [ext_resource type="PackedScene" uid="uid://bd0ot0mn1b1s4" path="res://entities/player/player.tscn" id="1_ccshm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="2_qbonl"]
 [ext_resource type="PackedScene" uid="uid://cf01nllue06so" path="res://entities/enemies/enemy_generator/enemy_generator.tscn" id="3_w38xt"]
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="5_852au"]
+[ext_resource type="PackedScene" uid="uid://bhmx3vap1pnt4" path="res://entities/environment/environment_generator/environment_generator.tscn" id="6_4e2g3"]
 [ext_resource type="Texture2D" uid="uid://b85817shcvxil" path="res://assets/ui/lives/Life.png" id="7_t425f"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label", "time_label", "elapsed_timer", "lives_label")]
@@ -23,6 +24,8 @@ position = Vector2(80, 216)
 [node name="SpaceBackground" parent="." instance=ExtResource("2_3frpy")]
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_w38xt")]
+
+[node name="EnvironmentGenerator" parent="." instance=ExtResource("6_4e2g3")]
 
 [node name="UI" type="HBoxContainer" parent="."]
 modulate = Color(1, 1, 1, 0.686275)

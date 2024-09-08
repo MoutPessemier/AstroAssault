@@ -31,7 +31,8 @@ func update_time_label(time: int) -> void:
 	time_label.text = "Time: " + formatted_time
 
 func update_lives_label(lives_left: int) -> void:
-	lives_label.text = "x" + str(lives_left)
+	var lives_left_corrected = max(lives_left, 0)
+	lives_label.text = "x" + str(lives_left_corrected)
 
 func _format_time(time: int) -> String:
 	var minutes = time / 60

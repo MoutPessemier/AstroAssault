@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4ebhvg3q4h6j"]
+
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="1_8ru4o"]
+[ext_resource type="Script" path="res://entities/environment/environment.gd" id="1_c03ta"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="2_gbkrg"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_5m4gm"]
+[ext_resource type="Script" path="res://components/destroyed_component.gd" id="4_j4tn1"]
+[ext_resource type="Script" path="res://components/health_component.gd" id="6_v5yx4"]
+[ext_resource type="Script" path="res://components/hurt_component.gd" id="7_7185t"]
+[ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="8_8iv6c"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="8_txnww"]
+[ext_resource type="PackedScene" uid="uid://388o3eg8itei" path="res://resources/effects/explosion/explosion_effect.tscn" id="9_e1tb0"]
+
+[node name="Environment" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier", "hitbox_component", "destroyed_component")]
+script = ExtResource("1_c03ta")
+visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
+hitbox_component = NodePath("HitboxComponent")
+destroyed_component = NodePath("DestroyedComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("2_gbkrg")
+entity = NodePath("..")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_5m4gm")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_mask = 0
+script = ExtResource("1_8ru4o")
+
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component")]
+script = ExtResource("4_j4tn1")
+entity = NodePath("..")
+health_component = NodePath("../HealthComponent")
+destroy_effect_spawner_component = NodePath("../SpawnerComponent")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_v5yx4")
+health = 250
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("health_component", "hurtbox_component")]
+script = ExtResource("7_7185t")
+health_component = NodePath("../HealthComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+game_stats = ExtResource("8_8iv6c")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("8_txnww")
+scene = ExtResource("9_e1tb0")
