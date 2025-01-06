@@ -15,10 +15,15 @@ func _ready() -> void:
 
 func play_again() -> void:
 	DataManager.save_game()
-	game_stats.score = 0
+	reset_game_state()
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 
 func quit() -> void:
 	DataManager.save_game()
 	game_stats.score = 0
 	get_tree().change_scene_to_file("res://scenes/start/start.tscn")
+
+func reset_game_state():
+	game_stats.score = 0
+	game_stats.time = 0
+	game_stats.health = 3
