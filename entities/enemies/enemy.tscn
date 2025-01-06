@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://gi4d7ene1yry"]
+[gd_scene load_steps=17 format=3 uid="uid://gi4d7ene1yry"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy.gd" id="1_20di1"]
+[ext_resource type="Script" path="res://components/sfx_component.gd" id="1_775mb"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="1_adapq"]
 [ext_resource type="Script" path="res://components/scale_component.gd" id="2_22hye"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="3_878qp"]
@@ -14,6 +15,7 @@
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="12_hklcl"]
 [ext_resource type="Script" path="res://components/score_component.gd" id="13_tfy0w"]
 [ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="14_v50mu"]
+[ext_resource type="AudioStream" uid="uid://d0h70lf3m4266" path="res://assets/sfx/explosion.wav" id="16_d64mm"]
 
 [node name="Enemy" type="Node2D" node_paths=PackedStringArray("move_component", "scale_component", "health_component", "visible_on_screen_notifier", "flash_component", "shake_component", "hurtbox_component", "hitbox_component", "destroyed_component", "score_component")]
 script = ExtResource("1_20di1")
@@ -73,12 +75,17 @@ game_stats = ExtResource("14_v50mu")
 script = ExtResource("10_b8tye")
 scene = ExtResource("11_h7n27")
 
-[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component")]
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component", "sfx_component")]
 script = ExtResource("12_hklcl")
 entity = NodePath("..")
 health_component = NodePath("../HealthComponent")
 destroy_effect_spawner_component = NodePath("../SpawnerComponent")
+sfx_component = NodePath("../SfxExplosionComponent")
 
 [node name="ScoreComponent" type="Node" parent="."]
 script = ExtResource("13_tfy0w")
 game_stats = ExtResource("14_v50mu")
+
+[node name="SfxExplosionComponent" type="Node" parent="."]
+script = ExtResource("1_775mb")
+sound_effect = ExtResource("16_d64mm")
