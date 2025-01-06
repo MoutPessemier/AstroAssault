@@ -3,6 +3,8 @@ extends Resource
 
 @export var score: int = 0:
 	set(value):
+		if value < score:
+			minus_point.emit()
 		score = value
 		score_changed.emit(score)
 
@@ -21,3 +23,4 @@ extends Resource
 signal score_changed(new_score)
 signal time_changed(new_time)
 signal health_change(new_health)
+signal minus_point()

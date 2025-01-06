@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://rx0dkvxeqxca"]
+
+[ext_resource type="FontFile" uid="uid://b3bgyu3dl7ymm" path="res://assets/fonts/manaspc.ttf" id="1_71cxf"]
+
+[resource]
+font = ExtResource("1_71cxf")
+font_size = 8
+font_color = Color(1, 0.294118, 0.207843, 1)

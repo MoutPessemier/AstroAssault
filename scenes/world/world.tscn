@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu0wpautkv3cv"]
+[gd_scene load_steps=10 format=3 uid="uid://bu0wpautkv3cv"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_80o16"]
 [ext_resource type="PackedScene" uid="uid://bd0ot0mn1b1s4" path="res://entities/player/player.tscn" id="1_ccshm"]
@@ -8,15 +8,17 @@
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="5_852au"]
 [ext_resource type="PackedScene" uid="uid://bhmx3vap1pnt4" path="res://entities/environment/environment_generator/environment_generator.tscn" id="6_4e2g3"]
 [ext_resource type="Texture2D" uid="uid://b85817shcvxil" path="res://assets/ui/lives/Life.png" id="7_t425f"]
+[ext_resource type="LabelSettings" uid="uid://rx0dkvxeqxca" path="res://resources/label_styles/error_label_settings.tres" id="8_uxy2k"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label", "time_label", "elapsed_timer", "lives_label")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label", "time_label", "elapsed_timer", "lives_label", "minus_label")]
 script = ExtResource("1_80o16")
 player = NodePath("Player")
-score_label = NodePath("UI/GameStats/VBoxContainer/ScoreLabel")
+score_label = NodePath("UI/GameStats/VBoxContainer/HBoxContainer/ScoreLabel")
 time_label = NodePath("UI/GameStats/VBoxContainer/TimeLabel")
 game_stats = ExtResource("2_qbonl")
 elapsed_timer = NodePath("ElapsedTime")
 lives_label = NodePath("UI/Lives/HBoxContainer/LivesLabel")
+minus_label = NodePath("UI/GameStats/VBoxContainer/HBoxContainer/-1")
 
 [node name="Player" parent="." instance=ExtResource("1_ccshm")]
 position = Vector2(80, 216)
@@ -46,12 +48,24 @@ theme_override_constants/margin_top = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/GameStats"]
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="UI/GameStats/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameStats/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/GameStats/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Score
 "
 label_settings = ExtResource("5_852au")
 vertical_alignment = 1
+
+[node name="-1" type="Label" parent="UI/GameStats/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.776471, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.776471, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.776471, 0, 0, 1)
+text = "-1"
+label_settings = ExtResource("8_uxy2k")
 
 [node name="TimeLabel" type="Label" parent="UI/GameStats/VBoxContainer"]
 layout_mode = 2

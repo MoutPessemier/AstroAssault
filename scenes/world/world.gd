@@ -6,6 +6,7 @@ extends Node2D
 @export var game_stats: GameStats
 @export var elapsed_timer: Timer
 @export var lives_label: Label
+@export var minus_label: Label
 
 func _ready() -> void:
 	update_score_label(game_stats.score)
@@ -14,6 +15,7 @@ func _ready() -> void:
 	game_stats.score_changed.connect(update_score_label)
 	game_stats.time_changed.connect(update_time_label)
 	game_stats.health_change.connect(update_lives_label)
+	game_stats.minus_point.connect(show_minus_label)
 	elapsed_timer.timeout.connect(func():
 		game_stats.time = game_stats.time + 1
 	)
@@ -33,6 +35,11 @@ func update_time_label(time: int) -> void:
 func update_lives_label(lives_left: int) -> void:
 	var lives_left_corrected = max(lives_left, 0)
 	lives_label.text = "x" + str(lives_left_corrected)
+
+func show_minus_label():
+	minus_label.visible = true
+	await get_tree().create_timer(0.75).timeout
+	minus_label.visible = false
 
 func _format_time(time: int) -> String:
 	var minutes = time / 60
