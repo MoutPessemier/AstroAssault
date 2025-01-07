@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bd0ot0mn1b1s4"]
+[gd_scene load_steps=31 format=3 uid="uid://bd0ot0mn1b1s4"]
 
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_n1qi1"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="13_58m31"]
 [ext_resource type="PackedScene" uid="uid://388o3eg8itei" path="res://resources/effects/explosion/explosion_effect.tscn" id="14_mfvtu"]
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="15_2f1n0"]
+[ext_resource type="Script" path="res://components/sfx_component.gd" id="17_ukbs8"]
+[ext_resource type="AudioStream" uid="uid://dbgh0m5ag04hc" path="res://assets/sfx/laser_shot.wav" id="18_5wgsi"]
+[ext_resource type="AudioStream" uid="uid://d0h70lf3m4266" path="res://assets/sfx/explosion.wav" id="19_2ltmw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8off"]
 atlas = ExtResource("10_1o7v8")
@@ -116,7 +119,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component", "sfx_shooting_component")]
 script = ExtResource("1_n1qi1")
 left_gun = NodePath("LeftGun")
 right_gun = NodePath("RightGun")
@@ -126,6 +129,7 @@ scale_component = NodePath("ScaleComponent")
 ship = NodePath("Anchor/Ship")
 fire = NodePath("Anchor/Fire")
 move_component = NodePath("MoveComponent")
+sfx_shooting_component = NodePath("SfxShootingComponent")
 
 [node name="Anchor" type="Node2D" parent="."]
 
@@ -193,8 +197,17 @@ game_stats = ExtResource("12_wrfkc")
 script = ExtResource("7_j3qg7")
 scene = ExtResource("14_mfvtu")
 
-[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component")]
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component", "sfx_component")]
 script = ExtResource("15_2f1n0")
 entity = NodePath("..")
 health_component = NodePath("../HealthComponent")
 destroy_effect_spawner_component = NodePath("../ExplosionSpawner")
+sfx_component = NodePath("../SfxExplosionComponent")
+
+[node name="SfxShootingComponent" type="Node" parent="."]
+script = ExtResource("17_ukbs8")
+sound_effect = ExtResource("18_5wgsi")
+
+[node name="SfxExplosionComponent" type="Node" parent="."]
+script = ExtResource("17_ukbs8")
+sound_effect = ExtResource("19_2ltmw")

@@ -22,6 +22,5 @@ func _ready() -> void:
 	)
 	health_component.death.connect(func():
 		score_component.adjust_score()
-		queue_free()
 	)
 	hitbox_component.hit_hurtbox.connect(destroyed_component.destroy.unbind(1))
