@@ -12,5 +12,7 @@ func _ready() -> void:
 func destroy() -> void:
 	sfx_component.play_sfx()
 	destroy_effect_spawner_component.spawn(entity.global_position)
-	await sfx_component.sfx_done_playing
+	sfx_component.sfx_done_playing.connect(func():
+		sfx_component.queue_free()
+	)
 	entity.queue_free()

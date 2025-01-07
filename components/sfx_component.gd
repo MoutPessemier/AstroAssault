@@ -8,7 +8,7 @@ var sfx_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 signal sfx_done_playing
 
 func _ready() -> void:
-	add_child(sfx_player)
+	get_tree().root.add_child(sfx_player)
 	sfx_player.stream = sound_effect
 
 func play_sfx():
