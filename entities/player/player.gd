@@ -13,7 +13,6 @@ extends Node2D
 
 func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
-	sfx_shooting_component.set_volume(-15)
 
 func fire_lasers() -> void:
 	laser_spawner.spawn(left_gun.global_position)

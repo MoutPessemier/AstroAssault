@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bd0ot0mn1b1s4"]
+[gd_scene load_steps=30 format=3 uid="uid://bd0ot0mn1b1s4"]
 
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_n1qi1"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="15_2f1n0"]
 [ext_resource type="Script" path="res://components/sfx_component.gd" id="17_ukbs8"]
 [ext_resource type="AudioStream" uid="uid://dbgh0m5ag04hc" path="res://assets/sfx/laser_shot.wav" id="18_5wgsi"]
-[ext_resource type="AudioStream" uid="uid://d0h70lf3m4266" path="res://assets/sfx/explosion.wav" id="19_2ltmw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8off"]
 atlas = ExtResource("10_1o7v8")
@@ -197,17 +196,14 @@ game_stats = ExtResource("12_wrfkc")
 script = ExtResource("7_j3qg7")
 scene = ExtResource("14_mfvtu")
 
-[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component", "sfx_component")]
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "health_component", "destroy_effect_spawner_component")]
 script = ExtResource("15_2f1n0")
 entity = NodePath("..")
 health_component = NodePath("../HealthComponent")
 destroy_effect_spawner_component = NodePath("../ExplosionSpawner")
-sfx_component = NodePath("../SfxExplosionComponent")
 
-[node name="SfxShootingComponent" type="Node" parent="."]
+[node name="SfxShootingComponent" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_5wgsi")
+volume_db = -25.0
+bus = &"SoundEffects"
 script = ExtResource("17_ukbs8")
-sound_effect = ExtResource("18_5wgsi")
-
-[node name="SfxExplosionComponent" type="Node" parent="."]
-script = ExtResource("17_ukbs8")
-sound_effect = ExtResource("19_2ltmw")

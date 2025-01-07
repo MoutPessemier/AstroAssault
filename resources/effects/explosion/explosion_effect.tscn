@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://388o3eg8itei"]
+[gd_scene load_steps=11 format=3 uid="uid://388o3eg8itei"]
 
 [ext_resource type="Texture2D" uid="uid://dcmrdj0c5d7vx" path="res://assets/sprites/Explosion.png" id="1_i8ip2"]
 [ext_resource type="Script" path="res://utilities/one_time_animated_effect.gd" id="1_kpuxs"]
+[ext_resource type="AudioStream" uid="uid://d0h70lf3m4266" path="res://assets/sfx/explosion.wav" id="3_gifjb"]
+[ext_resource type="Script" path="res://components/sfx_component.gd" id="4_02w51"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scy6q"]
 atlas = ExtResource("1_i8ip2")
@@ -46,9 +48,15 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="ExplosionEffect" type="AnimatedSprite2D"]
+[node name="ExplosionEffect" type="AnimatedSprite2D" node_paths=PackedStringArray("sfx_component")]
 sprite_frames = SubResource("SpriteFrames_hiw5f")
 autoplay = "default"
 frame = 4
 frame_progress = 1.0
 script = ExtResource("1_kpuxs")
+sfx_component = NodePath("SfxComponent")
+
+[node name="SfxComponent" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gifjb")
+volume_db = -15.0
+script = ExtResource("4_02w51")
