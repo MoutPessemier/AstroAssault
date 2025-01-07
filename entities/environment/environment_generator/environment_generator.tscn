@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhmx3vap1pnt4"]
+[gd_scene load_steps=6 format=3 uid="uid://bhmx3vap1pnt4"]
 
 [ext_resource type="Script" path="res://entities/environment/environment_generator/environment_generator.gd" id="1_lvwrj"]
 [ext_resource type="PackedScene" uid="uid://c7mg5hv3d34hx" path="res://entities/environment/meteor/meteor.tscn" id="2_7em68"]
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="2_eg6fb"]
 [ext_resource type="PackedScene" uid="uid://cijlneiay8cbw" path="res://entities/environment/shipwreck/shipwreck.tscn" id="3_ihipd"]
+[ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="4_b0gkb"]
 
 [node name="EnvironmentGenerator" type="Node2D" node_paths=PackedStringArray("spawner_component", "meteorite_spawn_timer", "shipwreck_spawn_timer")]
 script = ExtResource("1_lvwrj")
@@ -12,6 +13,7 @@ meteorite_spawn_timer = NodePath("MeteoriteSpawnTimer")
 shipwreck_spawn_timer = NodePath("ShipwreckSpawnTimer")
 METEORITE_SCENE = ExtResource("2_7em68")
 SHIPWRECK_SCENE = ExtResource("3_ihipd")
+game_stats = ExtResource("4_b0gkb")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("2_eg6fb")
@@ -22,5 +24,6 @@ one_shot = true
 autostart = true
 
 [node name="ShipwreckSpawnTimer" type="Timer" parent="."]
+process_mode = 4
 one_shot = true
 autostart = true
