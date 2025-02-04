@@ -18,7 +18,7 @@ Astro Assault is a thrilling space arcade game where you pilot a spaceship throu
 ## How to Play
 
 - **Controls**:
-  - **Move**: Use the arrow keys or WASD to navigate your spaceship.
+  - **Move**: Use the arrow keys or A and D to navigate your spaceship.
   - **Shoot**: Press the spacebar to fire your weapons.
   - **Pause**: Press the Escape key to pause the game.
 
