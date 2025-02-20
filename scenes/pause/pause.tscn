@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ysdk480ifsil"]
+[gd_scene load_steps=7 format=3 uid="uid://ysdk480ifsil"]
 
 [ext_resource type="Script" path="res://scenes/pause/pause.gd" id="1_lapvq"]
 [ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/label_styles/title_label_settings.tres" id="2_fl20d"]
 [ext_resource type="Texture2D" uid="uid://bf3vvhpemr54y" path="res://assets/ui/buttons/SettingsButton.png" id="3_vvx14"]
-[ext_resource type="Texture2D" uid="uid://yq1sglaolsur" path="res://assets/ui/buttons/ResumeButton.png" id="4_6jf7j"]
+[ext_resource type="Texture2D" uid="uid://cxvdd3cmo4skm" path="res://assets/ui/buttons/ResumeButton.png" id="4_6jf7j"]
+[ext_resource type="Texture2D" uid="uid://cleqfgl1xjc7u" path="res://assets/ui/buttons/HomeButton.png" id="5_nojqm"]
+[ext_resource type="Texture2D" uid="uid://bk87l56q211eq" path="res://assets/ui/buttons/QuitButton.png" id="6_v1b8y"]
 
-[node name="Pause" type="Control" node_paths=PackedStringArray("settings_button", "resume_button")]
+[node name="Pause" type="Control" node_paths=PackedStringArray("resume_button", "settings_button", "home_button", "quit_button")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -14,53 +16,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lapvq")
-settings_button = NodePath("MarginContainer/Column/Buttons/SettingsButton")
-resume_button = NodePath("MarginContainer/Column/Buttons/ResumeButton")
+resume_button = NodePath("CenterContainer/Column/Buttons/ResumeButton")
+settings_button = NodePath("CenterContainer/Column/Buttons/SettingsButton")
+home_button = NodePath("CenterContainer/Column/Buttons/HomeButton")
+quit_button = NodePath("CenterContainer/Column/Buttons/QuitButton")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 2.0
+offset_left = 1.0
+offset_top = -2.0
 offset_right = 160.0
 offset_bottom = 240.0
-color = Color(0.0313726, 0.027451, 0.180392, 0.768627)
+color = Color(0.0156863, 0.0117647, 0.117647, 0.752941)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_left = -1.0
 offset_right = 160.0
 offset_bottom = 240.0
-theme_override_constants/margin_top = 8
 
-[node name="Column" type="VBoxContainer" parent="MarginContainer"]
+[node name="Column" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Title" type="Label" parent="MarginContainer/Column"]
+[node name="Title" type="Label" parent="CenterContainer/Column"]
 layout_mode = 2
 text = "Game Paused"
 label_settings = ExtResource("2_fl20d")
 horizontal_alignment = 1
 
-[node name="SpaceBetween" type="Control" parent="MarginContainer/Column"]
-custom_minimum_size = Vector2(2.08165e-12, 90)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Buttons" type="VBoxContainer" parent="MarginContainer/Column"]
+[node name="Buttons" type="VBoxContainer" parent="CenterContainer/Column"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ResumeButton" type="TextureButton" parent="MarginContainer/Column/Buttons"]
+[node name="ResumeButton" type="TextureButton" parent="CenterContainer/Column/Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("4_6jf7j")
 stretch_mode = 3
 
-[node name="SettingsButton" type="TextureButton" parent="MarginContainer/Column/Buttons"]
+[node name="SettingsButton" type="TextureButton" parent="CenterContainer/Column/Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("3_vvx14")
 stretch_mode = 3
 
-[node name="SpaceAfter" type="Control" parent="MarginContainer/Column"]
+[node name="HomeButton" type="TextureButton" parent="CenterContainer/Column/Buttons"]
 layout_mode = 2
-size_flags_vertical = 3
+texture_normal = ExtResource("5_nojqm")
+stretch_mode = 3
+
+[node name="QuitButton" type="TextureButton" parent="CenterContainer/Column/Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("6_v1b8y")
+stretch_mode = 3
