@@ -5,6 +5,7 @@ var body = preload("res://assets/music/body.wav")
 
 func _ready() -> void:
 	set_bus("Music")
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	stream = intro
 	playing = true
 	finished.connect(_on_intro_finished_play_body)

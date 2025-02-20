@@ -5,9 +5,9 @@
 [ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/label_styles/title_label_settings.tres" id="2_0igq3"]
 [ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="2_10dkn"]
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="3_8qxvg"]
-[ext_resource type="Texture2D" uid="uid://d0ghkcdvatucv" path="res://assets/ui/buttons/PlayButton.png" id="4_s3ohi"]
-[ext_resource type="Texture2D" uid="uid://3tl7wlugnqu8" path="res://assets/ui/buttons/QuitButton.png" id="5_cfyo2"]
-[ext_resource type="Texture2D" uid="uid://bwofiu7x04e78" path="res://assets/ui/buttons/HomeButton.png" id="7_rv143"]
+[ext_resource type="Texture2D" uid="uid://d1m2jttfw0kjp" path="res://assets/ui/buttons/PlayButton.png" id="4_s3ohi"]
+[ext_resource type="Texture2D" uid="uid://bk87l56q211eq" path="res://assets/ui/buttons/QuitButton.png" id="5_cfyo2"]
+[ext_resource type="Texture2D" uid="uid://cleqfgl1xjc7u" path="res://assets/ui/buttons/HomeButton.png" id="7_rv143"]
 
 [node name="Death" type="Control" node_paths=PackedStringArray("play_again_button", "home_button", "quit_button", "score_value", "high_score_value")]
 layout_mode = 3

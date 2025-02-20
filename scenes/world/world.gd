@@ -8,6 +8,7 @@ extends Node2D
 @export var lives_label: Label
 @export var minus_label: Label
 @export var pause_button: TextureButton
+@export var pause_menu: PauseMenu
 
 func _ready() -> void:
 	update_score_label(game_stats.score)
@@ -52,4 +53,5 @@ func _format_time(time: int) -> String:
 	return s_minutes + ":" + s_seconds
 
 func pause_game() -> void:
-	pass
+	get_tree().paused = true
+	pause_menu.visible = true
