@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cleqfgl1xjc7u"
-path="res://.godot/imported/HomeButton.png-dc1d714524020945ac768f2de5e9e883.ctex"
+uid="uid://bf3vvhpemr54y"
+path="res://.godot/imported/SettingsButton.png-d8042a0bd2de650b4f8c049b616b20e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/buttons/HomeButton.png"
-dest_files=["res://.godot/imported/HomeButton.png-dc1d714524020945ac768f2de5e9e883.ctex"]
+source_file="res://assets/ui/buttons/SettingsButton.png"
+dest_files=["res://.godot/imported/SettingsButton.png-d8042a0bd2de650b4f8c049b616b20e9.ctex"]
 
 [params]
 
