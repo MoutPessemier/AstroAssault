@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc86fyabcpkse"]
+[gd_scene load_steps=9 format=3 uid="uid://bc86fyabcpkse"]
 
 [ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="1_eya3k"]
 [ext_resource type="Script" path="res://scenes/death/death.gd" id="1_hmjo0"]
@@ -7,8 +7,9 @@
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="3_8qxvg"]
 [ext_resource type="Texture2D" uid="uid://d0ghkcdvatucv" path="res://assets/ui/buttons/PlayButton.png" id="4_s3ohi"]
 [ext_resource type="Texture2D" uid="uid://3tl7wlugnqu8" path="res://assets/ui/buttons/QuitButton.png" id="5_cfyo2"]
+[ext_resource type="Texture2D" uid="uid://bwofiu7x04e78" path="res://assets/ui/buttons/HomeButton.png" id="7_rv143"]
 
-[node name="Death" type="Control" node_paths=PackedStringArray("play_again_button", "quit_button", "score_value", "high_score_value")]
+[node name="Death" type="Control" node_paths=PackedStringArray("play_again_button", "home_button", "quit_button", "score_value", "high_score_value")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hmjo0")
 play_again_button = NodePath("CenterContainer/VBoxContainer/ButtonVBoxContainer/PlayAgainButton")
+home_button = NodePath("CenterContainer/VBoxContainer/ButtonVBoxContainer/HomeButton")
 quit_button = NodePath("CenterContainer/VBoxContainer/ButtonVBoxContainer/QuitButton")
 game_stats = ExtResource("2_10dkn")
 score_value = NodePath("CenterContainer/VBoxContainer/LabelVBoxContainer/ScoreHBoxContainer/ScoreValue")
@@ -81,11 +83,17 @@ horizontal_alignment = 1
 
 [node name="ButtonVBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 8
 
 [node name="PlayAgainButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonVBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_s3ohi")
+stretch_mode = 3
+
+[node name="HomeButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonVBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_rv143")
 stretch_mode = 3
 
 [node name="QuitButton" type="TextureButton" parent="CenterContainer/VBoxContainer/ButtonVBoxContainer"]

@@ -1,6 +1,7 @@
 extends Control
 
 @export var play_again_button: TextureButton
+@export var home_button: TextureButton
 @export var quit_button: TextureButton
 @export var game_stats: GameStats
 @export var score_value: Label
@@ -9,6 +10,7 @@ extends Control
 func _ready() -> void:
 	score_value.text = str(game_stats.score)
 	play_again_button.pressed.connect(play_again)
+	home_button.pressed.connect(home)
 	quit_button.pressed.connect(quit)
 	game_stats.high_score = max(game_stats.score, game_stats.high_score)
 	high_score_value.text = str(game_stats.high_score)
@@ -18,10 +20,14 @@ func play_again() -> void:
 	reset_game_state()
 	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
 
-func quit() -> void:
+func home() -> void:
 	DataManager.save_game()
 	game_stats.score = 0
 	get_tree().change_scene_to_file("res://scenes/start/start.tscn")
+
+func quit() -> void:
+	DataManager.save_game()
+	get_tree().quit()
 
 func reset_game_state():
 	game_stats.score = 0
