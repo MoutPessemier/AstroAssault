@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bqajvowk3co3s"]
 
-[ext_resource type="Texture2D" uid="uid://dhtwdih8eoqqu" path="res://assets/sprites/Laser.png" id="1_c57co"]
 [ext_resource type="Script" path="res://entities/laser/laser.gd" id="1_nb7gr"]
 [ext_resource type="Material" uid="uid://bymi3a4ifgof2" path="res://resources/effects/white_flash/white_flash_material.tres" id="1_sjys8"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="2_74b61"]
+[ext_resource type="Texture2D" uid="uid://e0gh2tat88hp" path="res://assets/sprites/LaserBullet.png" id="3_3j1vl"]
 [ext_resource type="Script" path="res://components/scale_component.gd" id="4_je62e"]
 [ext_resource type="Script" path="res://components/flash_component.gd" id="5_2ooha"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="7_hftkk"]
@@ -21,7 +21,7 @@ flash_component = NodePath("FlashComponent")
 hitbox_component = NodePath("HitboxComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_c57co")
+texture = ExtResource("3_3j1vl")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("2_74b61")

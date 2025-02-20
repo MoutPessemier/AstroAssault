@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgqxb867qhpt5"
-path="res://.godot/imported/Space.png-c1c6fe7eef2b8b3cc4029e34a005cebb.ctex"
+uid="uid://e0gh2tat88hp"
+path="res://.godot/imported/LaserBullet.png-c95da5c4a5faa27120c2c841336ecd90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Space.png"
-dest_files=["res://.godot/imported/Space.png-c1c6fe7eef2b8b3cc4029e34a005cebb.ctex"]
+source_file="res://assets/sprites/LaserBullet.png"
+dest_files=["res://.godot/imported/LaserBullet.png-c95da5c4a5faa27120c2c841336ecd90.ctex"]
 
 [params]
 

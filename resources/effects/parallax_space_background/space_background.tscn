@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctjdpcs84lgiq"]
 
 [ext_resource type="Script" path="res://resources/effects/parallax_space_background/space_background.gd" id="1_bdx34"]
-[ext_resource type="Texture2D" uid="uid://dvf4rslbs7giw" path="res://assets/sprites/Space.png" id="1_bednd"]
+[ext_resource type="Texture2D" uid="uid://ccthte0mmvcrh" path="res://assets/sprites/SpaceBackground.png" id="2_g14a2"]
 [ext_resource type="Texture2D" uid="uid://m2lt1uuj5lr0" path="res://assets/sprites/StarsFar.png" id="2_wv1j3"]
 [ext_resource type="Texture2D" uid="uid://bgdiraf5dit2b" path="res://assets/sprites/StarsNear.png" id="3_jrpaa"]
 
@@ -17,7 +17,7 @@ motion_mirroring = Vector2(2.08165e-12, 240)
 [node name="Space" type="TextureRect" parent="SpaceLayer"]
 offset_right = 160.0
 offset_bottom = 240.0
-texture = ExtResource("1_bednd")
+texture = ExtResource("2_g14a2")
 stretch_mode = 1
 
 [node name="FarStarsLayer" type="ParallaxLayer" parent="."]
