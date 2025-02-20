@@ -7,6 +7,7 @@ extends Node2D
 @export var elapsed_timer: Timer
 @export var lives_label: Label
 @export var minus_label: Label
+@export var pause_button: TextureButton
 
 func _ready() -> void:
 	update_score_label(game_stats.score)
@@ -24,6 +25,7 @@ func _ready() -> void:
 		await get_tree().create_timer(1.0).timeout
 		get_tree().change_scene_to_file("res://scenes/death/death.tscn")
 	)
+	pause_button.pressed.connect(pause_game)
 
 func update_score_label(new_score: int) -> void:
 	score_label.text = "Score: " + str(new_score)
@@ -48,3 +50,6 @@ func _format_time(time: int) -> String:
 	var s_seconds = str(seconds) if seconds > 9 else "0" + str(seconds)
 	
 	return s_minutes + ":" + s_seconds
+
+func pause_game() -> void:
+	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu0wpautkv3cv"]
+[gd_scene load_steps=11 format=3 uid="uid://bu0wpautkv3cv"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_80o16"]
 [ext_resource type="PackedScene" uid="uid://bd0ot0mn1b1s4" path="res://entities/player/player.tscn" id="1_ccshm"]
@@ -9,16 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://bhmx3vap1pnt4" path="res://entities/environment/environment_generator/environment_generator.tscn" id="6_4e2g3"]
 [ext_resource type="Texture2D" uid="uid://b85817shcvxil" path="res://assets/ui/lives/Life.png" id="7_t425f"]
 [ext_resource type="LabelSettings" uid="uid://rx0dkvxeqxca" path="res://resources/label_styles/error_label_settings.tres" id="8_uxy2k"]
+[ext_resource type="Texture2D" uid="uid://cgea2jq3ct0sa" path="res://assets/ui/pause/Pause.png" id="9_ajcue"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label", "time_label", "elapsed_timer", "lives_label", "minus_label")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "score_label", "time_label", "elapsed_timer", "lives_label", "minus_label", "pause_button")]
 script = ExtResource("1_80o16")
 player = NodePath("Player")
 score_label = NodePath("UI/GameStats/VBoxContainer/HBoxContainer/ScoreLabel")
 time_label = NodePath("UI/GameStats/VBoxContainer/TimeLabel")
 game_stats = ExtResource("2_qbonl")
 elapsed_timer = NodePath("ElapsedTime")
-lives_label = NodePath("UI/Lives/HBoxContainer/LivesLabel")
+lives_label = NodePath("UI/GameStats/VBoxContainer/Lives/LivesLabel")
 minus_label = NodePath("UI/GameStats/VBoxContainer/HBoxContainer/-1")
+pause_button = NodePath("UI/MarginContainer/PauseButton")
 
 [node name="Player" parent="." instance=ExtResource("1_ccshm")]
 position = Vector2(80, 216)
@@ -35,7 +37,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 160.0
-offset_bottom = 28.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -73,30 +75,40 @@ text = "Time"
 label_settings = ExtResource("5_852au")
 vertical_alignment = 1
 
-[node name="BlankSpace" type="Control" parent="UI"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Lives" type="MarginContainer" parent="UI"]
-layout_mode = 2
-theme_override_constants/margin_right = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Lives"]
+[node name="Lives" type="HBoxContainer" parent="UI/GameStats/VBoxContainer"]
 layout_mode = 2
 
-[node name="Sprite" type="TextureRect" parent="UI/Lives/HBoxContainer"]
+[node name="Sprite" type="TextureRect" parent="UI/GameStats/VBoxContainer/Lives"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = ExtResource("7_t425f")
 stretch_mode = 2
 
-[node name="LivesLabel" type="Label" parent="UI/Lives/HBoxContainer"]
+[node name="LivesLabel" type="Label" parent="UI/GameStats/VBoxContainer/Lives"]
 layout_mode = 2
 text = "x3"
 label_settings = ExtResource("5_852au")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Space" type="Control" parent="UI"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="PauseButton" type="TextureButton" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("9_ajcue")
+stretch_mode = 3
 
 [node name="ElapsedTime" type="Timer" parent="."]
 autostart = true
