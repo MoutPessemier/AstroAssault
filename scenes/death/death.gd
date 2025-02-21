@@ -19,8 +19,8 @@ func _ready() -> void:
 
 func _on_play_again_buttonPressed() -> void:
 	DataManager.save_game()
-	reset_game_state()
-	get_tree().change_scene_to_file("res://scenes/world/world.tscn")
+	GameManager.reset_game_state()
+	NavigationManager.navigate("res://scenes/world/world.tscn")
 
 func _on_settings_button_pressed() -> void:
 	# TODO: add implementation to settings screen
@@ -28,14 +28,9 @@ func _on_settings_button_pressed() -> void:
 
 func _on_home_button_pressed() -> void:
 	DataManager.save_game()
-	game_stats.score = 0
-	get_tree().change_scene_to_file("res://scenes/start/start.tscn")
+	GameManager.reset_game_state()
+	NavigationManager.navigate("res://scenes/start/start.tscn")
 
 func _on_quit_button_pressed() -> void:
 	DataManager.save_game()
 	get_tree().quit()
-
-func reset_game_state():
-	game_stats.score = 0
-	game_stats.time = 0
-	game_stats.health = 3

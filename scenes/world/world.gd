@@ -24,7 +24,7 @@ func _ready() -> void:
 	player.tree_exiting.connect(func():
 		elapsed_timer.stop()
 		await get_tree().create_timer(1.0).timeout
-		get_tree().change_scene_to_file("res://scenes/death/death.tscn")
+		NavigationManager.navigate("res://scenes/death/death.tscn")
 	)
 	pause_button.pressed.connect(pause_game)
 
