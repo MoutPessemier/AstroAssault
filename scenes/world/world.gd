@@ -27,6 +27,9 @@ func _ready() -> void:
 		NavigationManager.navigate("res://scenes/death/death.tscn")
 	)
 	pause_button.pressed.connect(pause_game)
+	if NavigationManager.was_paused:
+		get_tree().paused = true
+		pause_menu.visible = true
 
 func update_score_label(new_score: int) -> void:
 	score_label.text = "Score: " + str(new_score)

@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6m4564xqvlpx"]
+
+[ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="1_7pnt0"]
+[ext_resource type="Script" path="res://scenes/settings/Settings.gd" id="1_e3p36"]
+[ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/label_styles/title_label_settings.tres" id="2_a7oyr"]
+[ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="4_j0cjo"]
+[ext_resource type="Texture2D" uid="uid://d3dr6ol423n0f" path="res://assets/ui/buttons/BackButton.png" id="4_omr46"]
+[ext_resource type="PackedScene" uid="uid://g3efku0hby6w" path="res://ui_components/sliders/Slider.tscn" id="5_kk6w3"]
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("back_button")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e3p36")
+back_button = NodePath("CenterContainer/VBoxContainer/BackButton")
+
+[node name="SpaceBackground" parent="." instance=ExtResource("1_7pnt0")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 160.0
+offset_bottom = 240.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Settings"
+label_settings = ExtResource("2_a7oyr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sliders" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Master" type="Label" parent="CenterContainer/VBoxContainer/Sliders"]
+layout_mode = 2
+text = "Master"
+label_settings = ExtResource("4_j0cjo")
+
+[node name="MasterSlider" parent="CenterContainer/VBoxContainer/Sliders" instance=ExtResource("5_kk6w3")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Music" type="Label" parent="CenterContainer/VBoxContainer/Sliders"]
+layout_mode = 2
+text = "Music"
+label_settings = ExtResource("4_j0cjo")
+
+[node name="MusicSlider" parent="CenterContainer/VBoxContainer/Sliders" instance=ExtResource("5_kk6w3")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="Sound Effects" type="Label" parent="CenterContainer/VBoxContainer/Sliders"]
+layout_mode = 2
+text = "Sound Effects"
+label_settings = ExtResource("4_j0cjo")
+
+[node name="SfxSlider" parent="CenterContainer/VBoxContainer/Sliders" instance=ExtResource("5_kk6w3")]
+layout_mode = 2
+bus_name = "SoundEffects"
+
+[node name="BackButton" type="TextureButton" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_omr46")
+stretch_mode = 3

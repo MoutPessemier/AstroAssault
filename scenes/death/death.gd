@@ -23,8 +23,7 @@ func _on_play_again_buttonPressed() -> void:
 	NavigationManager.navigate("res://scenes/world/world.tscn")
 
 func _on_settings_button_pressed() -> void:
-	# TODO: add implementation to settings screen
-	pass
+	NavigationManager.navigate("res://scenes/settings/settings.tscn")
 
 func _on_home_button_pressed() -> void:
 	DataManager.save_game()
