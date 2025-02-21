@@ -9,10 +9,11 @@ extends Node2D
 @export var hitbox_component: HitboxComponent
 @export var destroyed_component: DestroyedComponent
 @export var score_component: ScoreComponent
+@export var score_loss: int
 
 func _ready() -> void:
 	visible_on_screen_notifier.screen_exited.connect(func():
-		score_component.adjust_score(-1)
+		score_component.adjust_score(-score_loss)
 		queue_free()
 	)
 	hurtbox_component.hurt.connect(func(_hitbox: HitboxComponent):

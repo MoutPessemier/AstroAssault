@@ -17,7 +17,7 @@ func _ready() -> void:
 	game_stats.score_changed.connect(update_score_label)
 	game_stats.time_changed.connect(update_time_label)
 	game_stats.health_change.connect(update_lives_label)
-	game_stats.minus_point.connect(show_minus_label)
+	game_stats.minus_point.connect(func(value): show_minus_label(value))
 	elapsed_timer.timeout.connect(func():
 		game_stats.time = game_stats.time + 1
 	)
@@ -42,8 +42,9 @@ func update_lives_label(lives_left: int) -> void:
 	var lives_left_corrected = max(lives_left, 0)
 	lives_label.text = "x" + str(lives_left_corrected)
 
-func show_minus_label():
+func show_minus_label(value: int):
 	minus_label.visible = true
+	minus_label.text = str(value)
 	await get_tree().create_timer(0.75).timeout
 	minus_label.visible = false
 

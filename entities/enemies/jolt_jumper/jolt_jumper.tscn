@@ -53,6 +53,7 @@ radius = 8.0
 radius = 7.0
 
 [node name="JoltJumper" instance=ExtResource("1_3f785")]
+score_loss = 5
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_af4ej")

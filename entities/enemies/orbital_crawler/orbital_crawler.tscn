@@ -39,6 +39,7 @@ radius = 8.0
 radius = 7.0
 
 [node name="OrbitalCrawler" instance=ExtResource("1_op51t")]
+score_loss = 3
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_xj0tn")
