@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MusicStats" load_steps=2 format=3 uid="uid://dynkpxay128jk"]
+
+[ext_resource type="Script" path="res://resources/music_stats/music_stats.gd" id="1_4v42b"]
+
+[resource]
+script = ExtResource("1_4v42b")
+master_value = 1.0
+music_value = 0.85
+sfx_value = 1.0

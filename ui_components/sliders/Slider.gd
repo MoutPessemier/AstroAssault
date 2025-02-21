@@ -11,8 +11,10 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exit_slider)
 
 func _on_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	var linear_value = linear_to_db(value)
+	AudioServer.set_bus_volume_db(bus_index, linear_value)
+	DataManager.music_stats.update_bus_value(bus_name, linear_value)
+	
 
 func _on_mouse_exit_slider() -> void:
-	# TODO: Save sound settings between sessions 
 	self.release_focus()
