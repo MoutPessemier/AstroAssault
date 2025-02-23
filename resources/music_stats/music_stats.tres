@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_4v42b")
 master_value = 1.0
-music_value = 0.85
+music_value = 0.75
 sfx_value = 1.0
