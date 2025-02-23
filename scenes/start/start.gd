@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	DataManager.load_settings()
 	DataManager.load_game()
 
 func _process(_delta: float) -> void:
