@@ -8,6 +8,7 @@ extends Control
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	resume_button.pressed.connect(_on_resume_button_pressed)
 	settings_button.pressed.connect(_on_settings_button_pressed)
 	home_button.pressed.connect(_on_home_button_pressed)
@@ -28,3 +29,8 @@ func _on_home_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().quit()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		get_tree().paused = not get_tree().paused
+		visible = get_tree().paused

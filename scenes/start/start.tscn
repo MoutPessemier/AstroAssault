@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdcxfg4fhdco"]
+[gd_scene load_steps=11 format=3 uid="uid://bdcxfg4fhdco"]
 
 [ext_resource type="Script" path="res://scenes/start/start.gd" id="1_ohg4s"]
 [ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="2_dr4c6"]
 [ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/label_styles/title_label_settings.tres" id="3_iwlcl"]
+[ext_resource type="LabelSettings" uid="uid://bde3vve11n0np" path="res://resources/label_styles/info_label_style.tres" id="4_ou2bk"]
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="4_umobt"]
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="5_qe036"]
 [ext_resource type="Texture2D" uid="uid://d0fsfkgscpuf8" path="res://assets/sprites/Fire.png" id="6_gtnbe"]
@@ -61,6 +62,15 @@ layout_mode = 2
 text = "PRESS 'SPACE' TO PLAY"
 label_settings = ExtResource("4_umobt")
 horizontal_alignment = 1
+uppercase = true
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = " 'ESC' OR 'P'  PAUSES THE GAME"
+label_settings = ExtResource("4_ou2bk")
+horizontal_alignment = 1
+autowrap_mode = 2
+uppercase = true
 
 [node name="SpaceBackground" parent="." instance=ExtResource("2_dr4c6")]
 
