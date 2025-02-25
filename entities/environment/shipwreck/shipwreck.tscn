@@ -1,5 +1,114 @@
-[gd_scene load_steps=2 format=3 uid="uid://cijlneiay8cbw"]
+[gd_scene load_steps=19 format=3 uid="uid://cijlneiay8cbw"]
 
 [ext_resource type="PackedScene" uid="uid://b4ebhvg3q4h6j" path="res://entities/environment/environment.tscn" id="1_bpn2c"]
+[ext_resource type="Script" path="res://entities/environment/shipwreck/shipwreck.gd" id="2_4tup6"]
+[ext_resource type="PackedScene" uid="uid://d16qgqxgoaetd" path="res://entities/powerups/health/health_power_up.tscn" id="3_2xcln"]
+[ext_resource type="PackedScene" uid="uid://ct31ds55d0qbg" path="res://entities/powerups/shield/shield_power_up.tscn" id="4_kvsto"]
+[ext_resource type="PackedScene" uid="uid://ddxx0jmc0615r" path="res://entities/powerups/speed/speed_power_up.tscn" id="5_qukfm"]
+[ext_resource type="Texture2D" uid="uid://5b1cls62sbl5" path="res://assets/sprites/Shipwreck.png" id="6_fkrkl"]
+[ext_resource type="Script" path="res://components/spawner_component.gd" id="6_w0lp2"]
+[ext_resource type="Script" path="res://components/flash_component.gd" id="8_wk31c"]
+[ext_resource type="Script" path="res://components/scale_component.gd" id="9_gc2k3"]
+[ext_resource type="Script" path="res://components/shake_component.gd" id="10_bxqah"]
 
-[node name="Shipwreck" instance=ExtResource("1_bpn2c")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpah4"]
+atlas = ExtResource("6_fkrkl")
+region = Rect2(0, 0, 60, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amxln"]
+atlas = ExtResource("6_fkrkl")
+region = Rect2(60, 0, 60, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbe2h"]
+atlas = ExtResource("6_fkrkl")
+region = Rect2(120, 0, 60, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv4b8"]
+atlas = ExtResource("6_fkrkl")
+region = Rect2(180, 0, 60, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fla8x"]
+atlas = ExtResource("6_fkrkl")
+region = Rect2(240, 0, 60, 72)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6uoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpah4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amxln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbe2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv4b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fla8x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uolhp"]
+size = Vector2(60, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_luvut"]
+size = Vector2(60, 38)
+
+[node name="Shipwreck" node_paths=PackedStringArray("spawner_component", "health_component", "hurtbox_component", "flash_component", "scale_component", "shake_component") instance=ExtResource("1_bpn2c")]
+script = ExtResource("2_4tup6")
+HEALTH_POWER_UP_SCENE = ExtResource("3_2xcln")
+SHIELD_POWER_UP_SCENE = ExtResource("4_kvsto")
+SPEED_POWER_UP_SCENE = ExtResource("5_qukfm")
+spawner_component = NodePath("SpawnerComponent")
+health_component = NodePath("HealthComponent")
+hurtbox_component = NodePath("HurtboxComponent")
+flash_component = NodePath("FlashComponent")
+scale_component = NodePath("ScaleComponent")
+shake_component = NodePath("ShakeComponent")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_m6uoy")
+autoplay = "default"
+frame_progress = 0.756844
+
+[node name="MoveComponent" parent="." index="1"]
+velocity = Vector2(2.08165e-12, 20)
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0, 9.53674e-07)
+scale = Vector2(3, 3.6)
+
+[node name="HitboxComponent" parent="." index="3"]
+damage = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_uolhp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_luvut")
+
+[node name="HealthComponent" parent="." index="6"]
+health = 20
+
+[node name="SpawnerComponent" type="Node2D" parent="." index="9"]
+script = ExtResource("6_w0lp2")
+
+[node name="FlashComponent" type="Node" parent="." index="10" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_wk31c")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="ScaleComponent" type="Node" parent="." index="11" node_paths=PackedStringArray("sprite")]
+script = ExtResource("9_gc2k3")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="ShakeComponent" type="Node" parent="." index="12" node_paths=PackedStringArray("sprite")]
+script = ExtResource("10_bxqah")
+sprite = NodePath("../AnimatedSprite2D")

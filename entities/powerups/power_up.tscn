@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnw6axhfsigim"]
+
+[ext_resource type="Script" path="res://components/move_component.gd" id="1_fuevo"]
+[ext_resource type="Script" path="res://entities/powerups/power_up.gd" id="1_mul3w"]
+[ext_resource type="Script" path="res://components/border_bounce_component.gd" id="4_ul1yv"]
+
+[node name="PowerUp" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier_2d", "pickup_range", "move_component")]
+script = ExtResource("1_mul3w")
+visible_on_screen_notifier_2d = NodePath("VisibleOnScreenNotifier2D")
+pickup_range = NodePath("PickupRange")
+move_component = NodePath("MoveComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("1_fuevo")
+entity = NodePath("..")
+velocity = Vector2(20, 40)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PickupRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="BorderBounceComponent" type="Node" parent="." node_paths=PackedStringArray("entity", "move_component")]
+script = ExtResource("4_ul1yv")
+entity = NodePath("..")
+move_component = NodePath("../MoveComponent")

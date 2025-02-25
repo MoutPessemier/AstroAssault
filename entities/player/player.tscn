@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bd0ot0mn1b1s4"]
+[gd_scene load_steps=31 format=3 uid="uid://bd0ot0mn1b1s4"]
 
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_n1qi1"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://components/destroyed_component.gd" id="15_2f1n0"]
 [ext_resource type="Script" path="res://components/sfx_component.gd" id="17_ukbs8"]
 [ext_resource type="AudioStream" uid="uid://dbgh0m5ag04hc" path="res://assets/sfx/laser_shot.wav" id="18_5wgsi"]
+[ext_resource type="PackedScene" uid="uid://c8jhq1hf2v3up" path="res://entities/player/shield/shield.tscn" id="19_vjnsc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8off"]
 atlas = ExtResource("10_1o7v8")
@@ -118,7 +119,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component", "sfx_shooting_component")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component", "sfx_shooting_component", "hurt_component", "shield")]
 script = ExtResource("1_n1qi1")
 left_gun = NodePath("LeftGun")
 right_gun = NodePath("RightGun")
@@ -129,6 +130,8 @@ ship = NodePath("Anchor/Ship")
 fire = NodePath("Anchor/Fire")
 move_component = NodePath("MoveComponent")
 sfx_shooting_component = NodePath("SfxShootingComponent")
+hurt_component = NodePath("HurtComponent")
+shield = NodePath("Shield")
 
 [node name="Anchor" type="Node2D" parent="."]
 
@@ -207,3 +210,6 @@ stream = ExtResource("18_5wgsi")
 volume_db = -25.0
 bus = &"SoundEffects"
 script = ExtResource("17_ukbs8")
+
+[node name="Shield" parent="." instance=ExtResource("19_vjnsc")]
+position = Vector2(0, -6)

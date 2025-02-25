@@ -10,6 +10,8 @@ extends Node2D
 @export var fire: AnimatedSprite2D
 @export var move_component: MoveComponent
 @export var sfx_shooting_component: SfxComponent
+@export var hurt_component: HurtComponent
+@export var shield: Shield
 
 func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
@@ -33,3 +35,12 @@ func animate_ship() -> void:
 	else:
 		ship.play("center")
 		fire.play("center")
+
+func apply_health_power_up(amount: int) -> void:
+	hurt_component.add_health(amount)
+
+func apply_shield_power_up() -> void:
+	shield.enable_for(5.0)
+
+func apply_speed_power_up() -> void:
+	move_component.speed_up(1.5, 10)

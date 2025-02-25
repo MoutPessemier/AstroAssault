@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://ddxx0jmc0615r"]
+
+[ext_resource type="PackedScene" uid="uid://bnw6axhfsigim" path="res://entities/powerups/power_up.tscn" id="1_3yqjw"]
+[ext_resource type="Script" path="res://entities/powerups/speed/speed_power_up.gd" id="2_mhaor"]
+[ext_resource type="Texture2D" uid="uid://e4vkflhivwao" path="res://assets/sprites/SpeedPowerUp.png" id="3_bm0na"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6cb7"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpldt"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i2uf"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvnbi"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rptli"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtl34"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u63tg"]
+atlas = ExtResource("3_bm0na")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjvt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6cb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpldt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i2uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvnbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rptli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtl34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u63tg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8ar"]
+size = Vector2(18, 18)
+
+[node name="SpeedPowerUp" instance=ExtResource("1_3yqjw")]
+script = ExtResource("2_mhaor")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_fjvt3")
+autoplay = "default"
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(8.9407e-08, 8.9407e-08)
+scale = Vector2(0.9, 0.9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange" index="0"]
+shape = SubResource("RectangleShape2D_hp8ar")

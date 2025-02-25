@@ -11,3 +11,7 @@ func _ready() -> void:
 		if health_component.get_parent().name == "Player":
 			game_stats.health -= hitbox_component.damage
 	)
+
+func add_health(amount: int) -> void:
+	health_component.health = min(3, health_component.health + 1)
+	game_stats.health = min(3, game_stats.health + 1)
