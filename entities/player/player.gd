@@ -43,4 +43,4 @@ func apply_shield_power_up() -> void:
 	shield.enable_for(5.0)
 
 func apply_speed_power_up() -> void:
-	move_component.speed_up(1.5)
+	move_component.speed_up(1.5, 10)

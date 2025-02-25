@@ -64,10 +64,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp8ar"]
 size = Vector2(18, 18)
 
-[node name="SpeedPowerUp" node_paths=PackedStringArray("pickup_range", "move_component") instance=ExtResource("1_3yqjw")]
+[node name="SpeedPowerUp" instance=ExtResource("1_3yqjw")]
 script = ExtResource("2_mhaor")
-pickup_range = NodePath("PickupRange")
-move_component = NodePath("MoveComponent")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_fjvt3")
