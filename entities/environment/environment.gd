@@ -1,3 +1,4 @@
+class_name Environments
 extends Node2D
 
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D
