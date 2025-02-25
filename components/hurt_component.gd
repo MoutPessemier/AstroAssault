@@ -13,5 +13,5 @@ func _ready() -> void:
 	)
 
 func add_health(amount: int) -> void:
-	health_component.health += amount
-	game_stats.health += amount
+	health_component.health = min(3, health_component.health + 1)
+	game_stats.health = min(3, game_stats.health + 1)
