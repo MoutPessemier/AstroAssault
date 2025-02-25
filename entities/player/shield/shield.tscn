@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8jhq1hf2v3up"]
+
+[ext_resource type="Script" path="res://entities/player/shield/shield.gd" id="1_nsevl"]
+[ext_resource type="Texture2D" uid="uid://duqrl0opw3yu4" path="res://assets/sprites/Shield.png" id="2_lv7je"]
+[ext_resource type="Script" path="res://components/hurtbox_component.gd" id="2_owfq7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jh58"]
+atlas = ExtResource("2_lv7je")
+region = Rect2(0, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pth6"]
+atlas = ExtResource("2_lv7je")
+region = Rect2(0, 0, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1kkr"]
+atlas = ExtResource("2_lv7je")
+region = Rect2(32, 0, 32, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22na7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jh58")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pth6")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_d1kkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pth6")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbtv"]
+size = Vector2(24, 14)
+
+[node name="Shield" type="Node2D" node_paths=PackedStringArray("shield_sprite", "hurtbox_component")]
+visible = false
+script = ExtResource("1_nsevl")
+shield_sprite = NodePath("ShieldSprite")
+hurtbox_component = NodePath("HurtboxComponent")
+
+[node name="ShieldSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_22na7")
+autoplay = "default"
+frame_progress = 0.0402113
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_owfq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_0rbtv")

@@ -12,3 +12,7 @@ var is_dying: bool
 		if health <= 0 and not is_dying:
 			is_dying = true
 			death.emit()
+
+func add_health(amount: int) -> void:
+	if health + amount <= 3:
+		health += amount
