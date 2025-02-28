@@ -6,12 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://wnwavassivtx" path="res://assets/sfx/pickup.wav" id="4_xov4o"]
 [ext_resource type="Script" path="res://components/sfx_component.gd" id="5_vojrd"]
 
-[node name="PowerUp" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier_2d", "pickup_range", "move_component", "sfx_component")]
+[node name="PowerUp" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier_2d", "pickup_range", "move_component", "sfx_component", "animated_sprite_2d")]
 script = ExtResource("1_mul3w")
 visible_on_screen_notifier_2d = NodePath("VisibleOnScreenNotifier2D")
 pickup_range = NodePath("PickupRange")
 move_component = NodePath("MoveComponent")
 sfx_component = NodePath("SfxComponent")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
