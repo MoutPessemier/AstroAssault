@@ -6,6 +6,7 @@ extends AudioStreamPlayer
 
 func _init() -> void:
 	set_bus("SoundEffects")
+	mix_target = AudioStreamPlayer.MIX_TARGET_STEREO
 
 func play_sfx():
 	pitch_scale = randf_range(min_pitch, max_pitch)

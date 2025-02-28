@@ -4,6 +4,7 @@ extends Node2D
 @export var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D
 @export var pickup_range: Area2D
 @export var move_component: MoveComponent
+@export var sfx_component: SfxComponent
 
 func _ready() -> void:
 	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
@@ -13,7 +14,9 @@ func _ready() -> void:
 func _on_power_up_pick_up(hurtbox: HurtboxComponent) -> void:
 	if hurtbox.get_parent().name == "Player":
 		var ship: Ship = hurtbox.get_parent()
+		sfx_component.play_sfx()
 		_apply_power_up(ship)
+		await get_tree().create_timer(0.3).timeout
 		queue_free()
 
 func _apply_power_up(ship: Ship) -> void:

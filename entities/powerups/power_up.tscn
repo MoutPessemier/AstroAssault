@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnw6axhfsigim"]
+[gd_scene load_steps=6 format=3 uid="uid://bnw6axhfsigim"]
 
 [ext_resource type="Script" path="res://components/move_component.gd" id="1_fuevo"]
 [ext_resource type="Script" path="res://entities/powerups/power_up.gd" id="1_mul3w"]
 [ext_resource type="Script" path="res://components/border_bounce_component.gd" id="4_ul1yv"]
+[ext_resource type="AudioStream" uid="uid://wnwavassivtx" path="res://assets/sfx/pickup.wav" id="4_xov4o"]
+[ext_resource type="Script" path="res://components/sfx_component.gd" id="5_vojrd"]
 
-[node name="PowerUp" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier_2d", "pickup_range", "move_component")]
+[node name="PowerUp" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier_2d", "pickup_range", "move_component", "sfx_component")]
 script = ExtResource("1_mul3w")
 visible_on_screen_notifier_2d = NodePath("VisibleOnScreenNotifier2D")
 pickup_range = NodePath("PickupRange")
 move_component = NodePath("MoveComponent")
+sfx_component = NodePath("SfxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -27,3 +30,8 @@ collision_mask = 2
 script = ExtResource("4_ul1yv")
 entity = NodePath("..")
 move_component = NodePath("../MoveComponent")
+
+[node name="SfxComponent" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xov4o")
+volume_db = -5.0
+script = ExtResource("5_vojrd")
