@@ -49,7 +49,7 @@ func show_minus_label(value: int):
 	minus_label.visible = false
 
 func _format_time(time: int) -> String:
-	var minutes = time / 60
+	var minutes = (int)(time / 60)
 	var seconds = time % 60
 	var s_minutes = str(minutes) if minutes > 9 else "0" + str(minutes)
 	var s_seconds = str(seconds) if seconds > 9 else "0" + str(seconds)

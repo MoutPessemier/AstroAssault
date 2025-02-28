@@ -1,7 +1,7 @@
 class_name HitboxComponent
 extends Area2D
 
-@export var damage = 1.0
+@export var damage: int = 1
 
 signal hit_hurtbox(hurtbox)
 

@@ -85,7 +85,7 @@ position = Vector2(0, 9.53674e-07)
 scale = Vector2(3, 3.6)
 
 [node name="HitboxComponent" parent="." index="3"]
-damage = 5.0
+damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
 position = Vector2(0, 17)

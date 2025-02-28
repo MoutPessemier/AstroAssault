@@ -21,7 +21,7 @@ func _on_power_up_pick_up(hurtbox: HurtboxComponent) -> void:
 		await get_tree().create_timer(0.3).timeout
 		queue_free()
 
-func _apply_power_up(ship: Ship) -> void:
+func _apply_power_up(_ship: Ship) -> void:
 	print("Super class Power Up should not have a power up!")
 
 func _generate_random_x() -> int:
