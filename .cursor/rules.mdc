@@ -1,0 +1,127 @@
+---
+description: Coding Guide
+globs: 
+alwaysApply: true
+---
+# Godot Project Rules
+
+## Naming Conventions
+
+### Class Names
+
+Pattern: `class_name ([A-Z][a-zA-Z0-9_]*)`
+
+Class names should use PascalCase.
+
+```gdscript
+class_name Player  # GOOD
+class_name EnemyController  # GOOD
+class_name player  # BAD
+class_name enemy_controller  # BAD
+```
+
+### Function Names
+
+Pattern: `func ([a-z][a-z0-9_]*)`
+
+Function names should use snake_case and start with a lowercase letter.
+
+```gdscript
+func move_player()  # GOOD
+func attack_enemy()  # GOOD
+func MovePlayer()  # BAD
+func AttackEnemy()  # BAD
+```
+
+### Private Functions
+
+Pattern: `func (_[a-z][a-z0-9_]*)`
+
+Private functions should be prefixed with an underscore.
+
+```gdscript
+func _calculate_damage()  # GOOD
+func _handle_input()  # GOOD
+func calculate_damage()  # Should be private if implementation detail
+```
+
+### Variable Names
+
+Pattern: `var ([a-z][a-z0-9_]*)`
+
+Variable names should use snake_case.
+
+```gdscript
+var player_health  # GOOD
+var enemy_count  # GOOD
+var PlayerHealth  # BAD
+var EnemyCount  # BAD
+```
+
+## Code Organization
+
+### Component Pattern
+
+Pattern: `([A-Z][a-zA-Z0-9_]*Component)`
+
+Components should have a clear single responsibility and be named with a Component suffix.
+
+```gdscript
+class_name HealthComponent  # GOOD
+class_name HurtboxComponent  # GOOD
+class_name Health  # BAD - missing Component suffix
+```
+
+### Exports
+
+Pattern: `@export var ([a-z][a-z0-9_]*)`
+
+Use @export for inspector-configurable properties.
+
+```gdscript
+@export var max_health: int = 100  # GOOD
+@export var shield_sprite: AnimatedSprite2D  # GOOD
+```
+
+### Return Types
+
+Pattern: `func .* -> `
+
+Always specify return types for functions.
+
+```gdscript
+func get_health() -> int:  # GOOD
+func is_dead() -> bool:  # GOOD
+func apply_damage():  # BAD - missing return type
+```
+
+### Parameter Type Annotations
+
+Pattern: `func .*\(([a-z][a-z0-9_]*): ([A-Za-z0-9_]+)`
+
+Function parameters should have type annotations.
+
+```gdscript
+func take_damage(amount: int) -> void:  # GOOD
+func heal(value: float) -> void:  # GOOD
+func apply_effect(effect):  # BAD - missing type annotation
+```
+
+## Project Structure
+
+### Entity Organization
+
+Pattern: `entities/([a-z]+)/`
+
+Organize entities in folders by type:
+- `entities/player/`
+- `entities/enemies/`
+- `entities/objects/`
+
+### Component Organization
+
+Pattern: `components/([a-z_]+)_component`
+
+Place reusable components in a dedicated components directory:
+- `components/health_component/`
+- `components/hurtbox_component/`
