@@ -39,8 +39,8 @@ func animate_ship() -> void:
 func apply_health_power_up(amount: int) -> void:
 	hurt_component.add_health(amount)
 
-func apply_shield_power_up() -> void:
-	shield.enable_for(5.0)
+func apply_shield_power_up(duration: float) -> void:
+	shield.enable_for(duration)
 
-func apply_speed_power_up() -> void:
-	move_component.speed_up(1.5, 10)
+func apply_speed_power_up(multiplier: float, duration: float) -> void:
+	move_component.speed_up(multiplier, duration)
