@@ -27,6 +27,6 @@ func handle_spawn_meteorite(environment_scene: PackedScene, timer: Timer, time_o
 
 func handle_spawn_shipwreck(environment_scene: PackedScene, timer: Timer, time_offset: float = 1.0) -> void:
 	spawner_component.scene = environment_scene
-	spawner_component.spawn(Vector2(randf_range(MARGIN, screen_width - MARGIN), -16))
-	var spawn_rate = 15
+	spawner_component.spawn(Vector2(randf_range(MARGIN + Constants.SHIPWRECK_WIDTH/2.0, screen_width - Constants.SHIPWRECK_WIDTH/2.0), -16))
+	var spawn_rate = 15 + time_offset / (0.25 + game_stats.score * 0.01)
 	timer.start(spawn_rate + randf_range(5, 15))
