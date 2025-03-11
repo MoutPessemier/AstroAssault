@@ -22,7 +22,7 @@ func _on_power_up_pick_up(hurtbox: HurtboxComponent) -> void:
 		queue_free()
 
 func _apply_power_up(_ship: Ship) -> void:
-	print("Super class Power Up should not have a power up!")
+	printerr("Super class Power Up should not have a power up!")
 
 func _generate_random_x() -> int:
 	var random_number = RandomNumberGenerator.new().randf()

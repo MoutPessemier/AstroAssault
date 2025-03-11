@@ -15,7 +15,7 @@ func update_bus_value(bus_name: String, value: float) -> void:
 	elif bus_name == Constants.SFX_KEY:
 		sfx_value = value
 	else:
-		print("Invalid Audio Bus Name:: " + bus_name)
+		printerr("Invalid Audio Bus Name:: " + bus_name)
 
 func get_matching_bus(bus_name: String) -> float:
 	if bus_name == Constants.MASTER_KEY:

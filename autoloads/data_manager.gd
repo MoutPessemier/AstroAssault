@@ -15,7 +15,7 @@ func load_game() -> void:
 		var file = FileAccess.open(PATH_GAME_DATA, FileAccess.READ)
 		game_stats.high_score = file.get_var(game_stats.high_score)
 	else:
-		print("No data saved to file")
+		printerr("No data saved to file")
 		game_stats.high_score = 0
 
 func save_settings() -> void:
@@ -35,7 +35,7 @@ func load_settings() -> void:
 		music_stats.music_value = data.get(Constants.MUSIC_KEY)
 		music_stats.sfx_value = data.get(Constants.SFX_KEY)
 	else:
-		print("No data saved to file")
+		printerr("No data saved to file")
 		music_stats.master_value = 1
 		music_stats.music_value = 0.85
 		music_stats.sfx_value = 1
