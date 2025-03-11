@@ -4,7 +4,6 @@ extends Environments
 @export var SHIELD_POWER_UP_SCENE: PackedScene
 @export var SPEED_POWER_UP_SCENE: PackedScene
 @export var spawner_component: SpawnerComponent
-@export var health_component: HealthComponent
 @export var hurtbox_component: HurtboxComponent
 @export var flash_component: FlashComponent
 @export var scale_component: ScaleComponent

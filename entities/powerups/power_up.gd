@@ -1,5 +1,5 @@
 class_name PowerUp
-extends Node2D
+extends Serialisable
 
 @export var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D
 @export var pickup_range: Area2D

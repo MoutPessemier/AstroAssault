@@ -1,5 +1,5 @@
 class_name Ship
-extends Node2D
+extends Serialisable
 
 @export var left_gun: Marker2D
 @export var right_gun: Marker2D
@@ -12,6 +12,7 @@ extends Node2D
 @export var sfx_shooting_component: SfxComponent
 @export var hurt_component: HurtComponent
 @export var shield: Shield
+@export var health_component: HealthComponent
 
 func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
@@ -44,3 +45,23 @@ func apply_shield_power_up(duration: float) -> void:
 
 func apply_speed_power_up(multiplier: float, duration: float) -> void:
 	move_component.speed_up(multiplier, duration)
+
+func serialise() -> Dictionary:
+	var data = super.serialise()
+	data["health"] = health_component.health
+	data["speed_multiplier"] = move_component.speed_multiplier
+	data["has_shield"] = shield.visible
+	
+	return data
+
+func deserialise(data: Dictionary) -> void:
+	super.deserialise(data)
+	
+	if data.has("health"):
+		health_component.health = data["health"]
+	
+	if data.has("speed_multiplier"):
+		move_component.speed_up(data["speed_multiplier"], 5)
+	
+	if data.has("has_shield") and data["has_shield"]:
+		shield.enable_for(5)

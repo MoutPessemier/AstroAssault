@@ -60,13 +60,12 @@ size = Vector2(60, 38)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luvut"]
 size = Vector2(60, 38)
 
-[node name="Shipwreck" node_paths=PackedStringArray("spawner_component", "health_component", "hurtbox_component", "flash_component", "scale_component", "shake_component") instance=ExtResource("1_bpn2c")]
+[node name="Shipwreck" node_paths=PackedStringArray("spawner_component", "hurtbox_component", "flash_component", "scale_component", "shake_component") instance=ExtResource("1_bpn2c")]
 script = ExtResource("2_4tup6")
 HEALTH_POWER_UP_SCENE = ExtResource("3_2xcln")
 SHIELD_POWER_UP_SCENE = ExtResource("4_kvsto")
 SPEED_POWER_UP_SCENE = ExtResource("5_qukfm")
 spawner_component = NodePath("SpawnerComponent")
-health_component = NodePath("HealthComponent")
 hurtbox_component = NodePath("HurtboxComponent")
 flash_component = NodePath("FlashComponent")
 scale_component = NodePath("ScaleComponent")

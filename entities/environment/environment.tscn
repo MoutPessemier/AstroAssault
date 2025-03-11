@@ -11,11 +11,12 @@
 [ext_resource type="Script" path="res://components/spawner_component.gd" id="8_txnww"]
 [ext_resource type="PackedScene" uid="uid://388o3eg8itei" path="res://resources/effects/explosion/explosion_effect.tscn" id="9_e1tb0"]
 
-[node name="Environment" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier", "hitbox_component", "destroyed_component")]
+[node name="Environment" type="Node2D" node_paths=PackedStringArray("visible_on_screen_notifier", "hitbox_component", "destroyed_component", "health_component")]
 script = ExtResource("1_c03ta")
 visible_on_screen_notifier = NodePath("VisibleOnScreenNotifier2D")
 hitbox_component = NodePath("HitboxComponent")
 destroyed_component = NodePath("DestroyedComponent")
+health_component = NodePath("HealthComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 

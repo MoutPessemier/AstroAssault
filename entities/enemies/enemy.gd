@@ -1,4 +1,6 @@
-extends Node2D
+class_name Enemy
+extends Serialisable
+
 @export var move_component: MoveComponent
 @export var scale_component: ScaleComponent
 @export var health_component: HealthComponent
@@ -25,3 +27,14 @@ func _ready() -> void:
 		score_component.adjust_score()
 	)
 	hitbox_component.hit_hurtbox.connect(destroyed_component.destroy.unbind(1))
+
+func serialise() -> Dictionary:
+	var data = super.serialise()
+	data["health"] = health_component.health
+	
+	return data
+
+func deserialise(data: Dictionary) -> void:
+	super.deserialise(data)
+	if data.has("health"):
+		health_component.health = data["health"]
