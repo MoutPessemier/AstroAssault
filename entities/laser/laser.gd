@@ -1,4 +1,5 @@
-extends Node2D
+class_name Laser
+extends Serialisable
 
 @export var visible_on_screen_notifier: VisibleOnScreenNotifier2D
 @export var scale_component: ScaleComponent

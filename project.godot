@@ -22,6 +22,7 @@ DataManager="*res://autoloads/data_manager.gd"
 MusicPlayer="*res://autoloads/music_player.gd"
 NavigationManager="*res://autoloads/navigation_manager.gd"
 Constants="*res://autoloads/constants.gd"
+SaveManager="*res://autoloads/save_manager.gd"
 
 [display]
 

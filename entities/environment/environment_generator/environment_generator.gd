@@ -1,4 +1,4 @@
-extends Node2D
+extends Serialisable
 
 const MARGIN = 8
 var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
@@ -30,3 +30,26 @@ func handle_spawn_shipwreck(environment_scene: PackedScene, timer: Timer, time_o
 	spawner_component.spawn(Vector2(randf_range(MARGIN + Constants.SHIPWRECK_WIDTH/2.0, screen_width - Constants.SHIPWRECK_WIDTH/2.0), -16))
 	var spawn_rate = 15 + time_offset / (0.25 + game_stats.score * 0.01)
 	timer.start(spawn_rate + randf_range(5, 15))
+
+func serialise() -> Dictionary:
+	var data = super.serialise()
+	data["meteorite_timer"] = {
+		"time_left": meteorite_spawn_timer.time_left,
+		"process_mode": meteorite_spawn_timer.process_mode
+	}
+	data["shipwreck_timer"] = {
+		"time_left": shipwreck_spawn_timer.time_left,
+		"process_mode": shipwreck_spawn_timer.process_mode
+	}
+	return data
+
+func deserialise(data: Dictionary) -> void:
+	super.deserialise(data)
+	
+	if data.has("meteorite_timer"):
+		meteorite_spawn_timer.start(data.meteorite_timer.time_left)
+		meteorite_spawn_timer.process_mode = data.meteorite_timer.process_mode
+	
+	if data.has("shipwreck_timer"):
+		shipwreck_spawn_timer.start(data.shipwreck_timer.time_left)
+		shipwreck_spawn_timer.process_mode = data.shipwreck_timer.process_mode

@@ -1,5 +1,5 @@
 class_name PowerUp
-extends Node2D
+extends Serialisable
 
 @export var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D
 @export var pickup_range: Area2D
@@ -30,3 +30,16 @@ func _generate_random_x() -> int:
 		return 25
 	else:
 		return -25
+
+func serialise() -> Dictionary:
+	var data = super.serialise()
+	data["velocity"] = {
+		"x": move_component.velocity.x,
+		"y": move_component.velocity.y
+	}
+	return data
+
+func deserialise(data: Dictionary) -> void:
+	super.deserialise(data)
+	if data.has("velocity"):
+		move_component.velocity = Vector2(data.velocity.x, data.velocity.y)

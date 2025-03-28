@@ -119,7 +119,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component", "sfx_shooting_component", "hurt_component", "shield")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component", "sfx_shooting_component", "hurt_component", "shield", "health_component")]
 script = ExtResource("1_n1qi1")
 left_gun = NodePath("LeftGun")
 right_gun = NodePath("RightGun")
@@ -132,6 +132,7 @@ move_component = NodePath("MoveComponent")
 sfx_shooting_component = NodePath("SfxShootingComponent")
 hurt_component = NodePath("HurtComponent")
 shield = NodePath("Shield")
+health_component = NodePath("HealthComponent")
 
 [node name="Anchor" type="Node2D" parent="."]
 

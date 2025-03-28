@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6m4564xqvlpx"]
 
 [ext_resource type="PackedScene" uid="uid://ctjdpcs84lgiq" path="res://resources/effects/parallax_space_background/space_background.tscn" id="1_7pnt0"]
-[ext_resource type="Script" path="res://scenes/settings/Settings.gd" id="1_e3p36"]
+[ext_resource type="Script" path="res://scenes/settings/settings.gd" id="1_e3p36"]
 [ext_resource type="LabelSettings" uid="uid://c2vomnjk554so" path="res://resources/label_styles/title_label_settings.tres" id="2_a7oyr"]
 [ext_resource type="LabelSettings" uid="uid://bimefuvunhqj7" path="res://resources/label_styles/default_label_settings.tres" id="4_j0cjo"]
 [ext_resource type="Texture2D" uid="uid://d3dr6ol423n0f" path="res://assets/ui/buttons/BackButton.png" id="4_omr46"]
