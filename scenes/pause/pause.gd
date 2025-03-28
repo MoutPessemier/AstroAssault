@@ -19,6 +19,7 @@ func _on_resume_button_pressed() -> void:
 	get_tree().paused = false
 
 func _on_settings_button_pressed() -> void:
+	SaveManager.save_game_state()
 	NavigationManager.navigate("res://scenes/settings/settings.tscn", true)
 
 func _on_home_button_pressed() -> void:

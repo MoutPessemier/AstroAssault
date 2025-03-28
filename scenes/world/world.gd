@@ -21,15 +21,34 @@ func _ready() -> void:
 	elapsed_timer.timeout.connect(func():
 		game_stats.time = game_stats.time + 1
 	)
-	player.tree_exiting.connect(func():
-		elapsed_timer.stop()
-		await get_tree().create_timer(1.0).timeout
-		NavigationManager.navigate("res://scenes/death/death.tscn")
-	)
+	connect_player_signals()
 	pause_button.pressed.connect(pause_game)
 	if NavigationManager.was_paused:
+		SaveManager.schedule_state_restoration()
 		get_tree().paused = true
 		pause_menu.visible = true
+		await get_tree().create_timer(0.1).timeout
+		connect_player_signals()
+
+func connect_player_signals() -> void:
+	if not player or not player.health_component:
+		return
+
+	if player.health_component.death.is_connected(func(): NavigationManager.was_paused = false):
+		player.health_component.death.disconnect(func(): NavigationManager.was_paused = false)
+	if player.tree_exiting.is_connected(func(): handle_player_exit()):
+		player.tree_exiting.disconnect(func(): handle_player_exit())
+	
+	player.health_component.death.connect(func():
+		NavigationManager.was_paused = false
+	)
+	player.tree_exiting.connect(func():
+		if not NavigationManager.was_paused:
+			elapsed_timer.stop()
+			await get_tree().create_timer(1.0).timeout
+			NavigationManager.navigate("res://scenes/death/death.tscn")
+	)
+	
 
 func update_score_label(new_score: int) -> void:
 	score_label.text = "Score: " + str(new_score)

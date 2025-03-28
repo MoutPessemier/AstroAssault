@@ -17,7 +17,6 @@ func _process(_delta: float) -> void:
 func restore_game_state() -> void:
 	var state = _temp_game_state
 	_temp_game_state = null
-	print(state)
 	if state:
 		deserialise_world(state)
 
@@ -55,18 +54,18 @@ func deserialise_world(state: Dictionary) -> void:
 	for entity_data in state["entities"]:
 		persisted_ids.append(entity_data["unique_id"])
 	
+	for entity_data in state["entities"]:
+		var existing_node = find_node_by_id(entity_data["unique_id"])
+		if existing_node and existing_node.has_method("deserialise"):
+			existing_node.deserialise(entity_data)
+		elif entity_data["unique_id"] != "player":  
+			spawn_entity(entity_data)
+	
 	for node in nodes:
 		if node.has_method("get_unique_id"):
 			var id = node.get_unique_id()
 			if not id in persisted_ids:
 				node.queue_free()
-	
-	for entity_data in state["entities"]:
-		var existing_node = find_node_by_id(entity_data["unique_id"])
-		if existing_node and existing_node.has_method("deserialise"):
-			existing_node.deserialise(entity_data)
-		else:
-			spawn_entity(entity_data)
 
 func find_node_by_id(unique_id: String) -> Node:
 	var nodes = get_serialisable_nodes()

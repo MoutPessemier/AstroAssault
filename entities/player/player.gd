@@ -14,6 +14,9 @@ extends Serialisable
 @export var shield: Shield
 @export var health_component: HealthComponent
 
+func get_unique_id() -> String:
+	return "player"
+
 func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
 
