@@ -6,6 +6,7 @@ extends Serialisable
 @export var laser_spawner: SpawnerComponent
 @export var fire_rate_timer: Timer
 @export var scale_component: ScaleComponent
+@export var shake_component: ShakeComponent
 @export var ship: AnimatedSprite2D
 @export var fire: AnimatedSprite2D
 @export var move_component: MoveComponent
@@ -13,12 +14,16 @@ extends Serialisable
 @export var hurt_component: HurtComponent
 @export var shield: Shield
 @export var health_component: HealthComponent
+@export var hurtbox_component: HurtboxComponent
 
 func get_unique_id() -> String:
 	return "player"
 
 func _ready() -> void:
 	fire_rate_timer.timeout.connect(fire_lasers)
+	hurtbox_component.hurt.connect(func(_hitbox: HitboxComponent):
+		shake_component.tween_shake()
+	)
 
 func fire_lasers() -> void:
 	laser_spawner.spawn(left_gun.global_position)

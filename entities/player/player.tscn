@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bd0ot0mn1b1s4"]
+[gd_scene load_steps=32 format=3 uid="uid://bd0ot0mn1b1s4"]
 
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_n1qi1"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://components/scale_component.gd" id="9_us5st"]
 [ext_resource type="Texture2D" uid="uid://d0fsfkgscpuf8" path="res://assets/sprites/Fire.png" id="10_1o7v8"]
 [ext_resource type="Script" path="res://components/health_component.gd" id="11_rtm73"]
+[ext_resource type="Script" path="res://components/shake_component.gd" id="11_ycjvt"]
 [ext_resource type="Script" path="res://components/hurtbox_component.gd" id="12_ib07b"]
 [ext_resource type="Resource" uid="uid://cqkx4g8laqxwn" path="res://resources/game_stats/game_stats.tres" id="12_wrfkc"]
 [ext_resource type="Script" path="res://components/hurt_component.gd" id="13_58m31"]
@@ -119,13 +120,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "ship", "fire", "move_component", "sfx_shooting_component", "hurt_component", "shield", "health_component")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("left_gun", "right_gun", "laser_spawner", "fire_rate_timer", "scale_component", "shake_component", "ship", "fire", "move_component", "sfx_shooting_component", "hurt_component", "shield", "health_component", "hurtbox_component")]
 script = ExtResource("1_n1qi1")
 left_gun = NodePath("LeftGun")
 right_gun = NodePath("RightGun")
 laser_spawner = NodePath("LaserSpawner")
 fire_rate_timer = NodePath("FireRateTimer")
 scale_component = NodePath("ScaleComponent")
+shake_component = NodePath("ShakeComponent")
 ship = NodePath("Anchor/Ship")
 fire = NodePath("Anchor/Fire")
 move_component = NodePath("MoveComponent")
@@ -133,6 +135,7 @@ sfx_shooting_component = NodePath("SfxShootingComponent")
 hurt_component = NodePath("HurtComponent")
 shield = NodePath("Shield")
 health_component = NodePath("HealthComponent")
+hurtbox_component = NodePath("HurtboxComponent")
 
 [node name="Anchor" type="Node2D" parent="."]
 
@@ -176,6 +179,10 @@ autostart = true
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("9_us5st")
+sprite = NodePath("../Anchor")
+
+[node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_ycjvt")
 sprite = NodePath("../Anchor")
 
 [node name="HealthComponent" type="Node" parent="."]
