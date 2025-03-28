@@ -30,3 +30,16 @@ func _generate_random_x() -> int:
 		return 25
 	else:
 		return -25
+
+func serialise() -> Dictionary:
+	var data = super.serialise()
+	data["velocity"] = {
+		"x": move_component.velocity.x,
+		"y": move_component.velocity.y
+	}
+	return data
+
+func deserialise(data: Dictionary) -> void:
+	super.deserialise(data)
+	if data.has("velocity"):
+		move_component.velocity = Vector2(data.velocity.x, data.velocity.y)
