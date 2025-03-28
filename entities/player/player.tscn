@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bd0ot0mn1b1s4"]
+[gd_scene load_steps=38 format=3 uid="uid://bd0ot0mn1b1s4"]
 
 [ext_resource type="Texture2D" uid="uid://bn6l4q1ngmf3e" path="res://assets/sprites/Ship.png" id="1_d05rp"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_n1qi1"]
@@ -81,13 +81,37 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3bqh"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo4qe"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(16, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1rq8c"]
 atlas = ExtResource("1_d05rp")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xsjw"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtn0r"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(0, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vqwn"]
 atlas = ExtResource("1_d05rp")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fujbq"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsxmt"]
+atlas = ExtResource("1_d05rp")
+region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsdbs"]
 atlas = ExtResource("1_d05rp")
@@ -97,10 +121,42 @@ region = Rect2(32, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_u3bqh")
+}],
+"loop": true,
+"name": &"center_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo4qe")
+}],
+"loop": true,
+"name": &"center_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1rq8c")
 }],
 "loop": true,
-"name": &"center",
+"name": &"center_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xsjw")
+}],
+"loop": true,
+"name": &"turn_left_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtn0r")
+}],
+"loop": true,
+"name": &"turn_left_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -108,7 +164,23 @@ animations = [{
 "texture": SubResource("AtlasTexture_1vqwn")
 }],
 "loop": true,
-"name": &"turn_left",
+"name": &"turn_left_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fujbq")
+}],
+"loop": true,
+"name": &"turn_right_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsxmt")
+}],
+"loop": true,
+"name": &"turn_right_2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -116,7 +188,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_tsdbs")
 }],
 "loop": true,
-"name": &"turn_right",
+"name": &"turn_right_3",
 "speed": 5.0
 }]
 
@@ -147,8 +219,8 @@ autoplay = "center"
 
 [node name="Ship" type="AnimatedSprite2D" parent="Anchor"]
 sprite_frames = SubResource("SpriteFrames_ielsg")
-animation = &"center"
-autoplay = "center"
+animation = &"center_3"
+autoplay = "center_3"
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("entity")]
 script = ExtResource("3_wj01d")

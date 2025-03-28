@@ -36,13 +36,13 @@ func _process(_delta: float) -> void:
 
 func animate_ship() -> void:
 	if move_component.velocity.x < 0:
-		ship.play("turn_left")
+		ship.play("turn_left_{lives}".format({"lives": health_component.health}))
 		fire.play("turn_left")
 	elif move_component.velocity.x > 0:
-		ship.play("turn_right")
+		ship.play("turn_right_{lives}".format({"lives": health_component.health}))
 		fire.play("turn_right")
 	else:
-		ship.play("center")
+		ship.play("center_{lives}".format({"lives": health_component.health}))
 		fire.play("center")
 
 func apply_health_power_up(amount: int) -> void:
