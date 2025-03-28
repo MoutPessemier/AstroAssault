@@ -10,45 +10,83 @@ extends Node2D
 @export var pause_button: TextureButton
 @export var pause_menu: PauseMenu
 
+const SIGNAL_CONNECTIONS = {
+	"game_stats": [
+		{"signal": "score_changed", "method": "update_score_label"},
+		{"signal": "time_changed", "method": "update_time_label"},
+		{"signal": "health_change", "method": "update_lives_label"},
+		{"signal": "minus_point", "method": "show_minus_label"}
+	],
+	"player": [
+		{"signal": "death", "method": "_on_player_death"},
+		{"signal": "tree_exiting", "method": "handle_player_exit"}
+	]
+}
+
 func _ready() -> void:
+	_initialize_ui()
+	_connect_signals()
+	_handle_pause_state()
+
+func _initialize_ui() -> void:
 	update_score_label(game_stats.score)
 	update_time_label(game_stats.time)
 	update_lives_label(game_stats.health)
-	game_stats.score_changed.connect(update_score_label)
-	game_stats.time_changed.connect(update_time_label)
-	game_stats.health_change.connect(update_lives_label)
-	game_stats.minus_point.connect(func(value): show_minus_label(value))
-	elapsed_timer.timeout.connect(func():
-		game_stats.time = game_stats.time + 1
-	)
-	connect_player_signals()
+	elapsed_timer.timeout.connect(_on_timer_timeout)
 	pause_button.pressed.connect(pause_game)
-	if NavigationManager.was_paused:
-		SaveManager.schedule_state_restoration()
-		get_tree().paused = true
-		pause_menu.visible = true
-		await get_tree().create_timer(0.1).timeout
-		connect_player_signals()
 
-func connect_player_signals() -> void:
-	if not player or not player.health_component:
+func _connect_signals() -> void:
+	_connect_game_stats_signals()
+	_connect_player_signals()
+
+func _connect_game_stats_signals() -> void:
+	for connection in SIGNAL_CONNECTIONS.game_stats:
+		game_stats.connect(connection.signal, Callable(self, connection.method))
+
+func _connect_player_signals() -> void:
+	if not _is_player_valid():
 		return
+	
+	_disconnect_existing_player_signals()
+	_connect_new_player_signals()
 
-	if player.health_component.death.is_connected(func(): NavigationManager.was_paused = false):
-		player.health_component.death.disconnect(func(): NavigationManager.was_paused = false)
-	if player.tree_exiting.is_connected(func(): handle_player_exit()):
-		player.tree_exiting.disconnect(func(): handle_player_exit())
+func _is_player_valid() -> bool:
+	return player and player.health_component
+
+func _disconnect_existing_player_signals() -> void:
+	for connection in SIGNAL_CONNECTIONS.player:
+		var signal_name = connection.signal
+		var method = connection.method
+		if player.health_component.is_connected(signal_name, Callable(self, method)):
+			player.health_component.disconnect(signal_name, Callable(self, method))
+
+func _connect_new_player_signals() -> void:
+	for connection in SIGNAL_CONNECTIONS.player:
+		var signal_name = connection.signal
+		var method = connection.method
+		player.health_component.connect(signal_name, Callable(self, method))
+
+func _handle_pause_state() -> void:
+	if not NavigationManager.was_paused:
+		return
 	
-	player.health_component.death.connect(func():
-		NavigationManager.was_paused = false
-	)
-	player.tree_exiting.connect(func():
-		if not NavigationManager.was_paused:
-			elapsed_timer.stop()
-			await get_tree().create_timer(1.0).timeout
-			NavigationManager.navigate("res://scenes/death/death.tscn")
-	)
-	
+	SaveManager.schedule_state_restoration()
+	get_tree().paused = true
+	pause_menu.visible = true
+	await get_tree().create_timer(0.1).timeout
+	_connect_player_signals()
+
+func _on_timer_timeout() -> void:
+	game_stats.time += 1
+
+func _on_player_death() -> void:
+	NavigationManager.was_paused = false
+
+func handle_player_exit() -> void:
+	if not NavigationManager.was_paused:
+		elapsed_timer.stop()
+		await get_tree().create_timer(1.0).timeout
+		NavigationManager.navigate("res://scenes/death/death.tscn")
 
 func update_score_label(new_score: int) -> void:
 	score_label.text = "Score: " + str(new_score)
