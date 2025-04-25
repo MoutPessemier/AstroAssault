@@ -7,7 +7,7 @@ extends Node
 
 const BASE_SPEED_MULTIPLIER: float = 1.0
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	entity.translate(velocity * delta * speed_multiplier)
 
 func speed_up(multiplier: float, duration: float) -> void:
