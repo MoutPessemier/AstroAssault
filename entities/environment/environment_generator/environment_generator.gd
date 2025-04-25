@@ -15,7 +15,7 @@ func _ready() -> void:
 	shipwreck_spawn_timer.timeout.connect(handle_spawn_shipwreck.bind(SHIPWRECK_SCENE, shipwreck_spawn_timer, 6.0))
 	
 	game_stats.score_changed.connect(func(new_score: int):
-		if new_score > 25:
+		if new_score > 35:
 			shipwreck_spawn_timer.process_mode = Node.PROCESS_MODE_INHERIT
 	)
 
