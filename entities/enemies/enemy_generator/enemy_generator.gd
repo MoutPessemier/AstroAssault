@@ -11,11 +11,11 @@ var screen_width = ProjectSettings.get_setting("display/window/size/viewport_wid
 @export var game_stats: GameStats
 
 func _ready() -> void:
-	orbital_crawler_spawn_timer.timeout.connect(handle_spawn.bind(ORBITAL_CRAWLER_SCENE, orbital_crawler_spawn_timer))
-	#jolt_jumper_spawn_timer.timeout.connect(handle_spawn.bind(JOLT_JUMPER_SCENE, jolt_jumper_spawn_timer))
+	orbital_crawler_spawn_timer.timeout.connect(handle_spawn.bind(ORBITAL_CRAWLER_SCENE, orbital_crawler_spawn_timer, 1.5))
+	jolt_jumper_spawn_timer.timeout.connect(handle_spawn.bind(JOLT_JUMPER_SCENE, jolt_jumper_spawn_timer, 5))
 	
 	game_stats.score_changed.connect(func(new_score: int):
-		if new_score > 20:
+		if new_score > 25:
 			jolt_jumper_spawn_timer.process_mode = Node.PROCESS_MODE_INHERIT
 	)
 
