@@ -12,4 +12,4 @@ var sfx_bus_index = AudioServer.get_bus_index(SFX_KEY)
 # Sprites
 const SHIPWRECK_WIDTH = 60
 const SHIP_Y_POSITION = 216
-
+const TONGUE_BODY_HEIGHT = 5
