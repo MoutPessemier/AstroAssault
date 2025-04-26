@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://udfjft64pn2v"]
+[gd_scene load_steps=5 format=3 uid="uid://udfjft64pn2v"]
 
+[ext_resource type="Script" path="res://entities/enemies/jolt_jumper/tongue_tip.gd" id="1_3nixq"]
 [ext_resource type="Texture2D" uid="uid://danmyrsuou5me" path="res://assets/sprites/TongueTip.png" id="1_6lfq6"]
 [ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_kmvmy"]
 
@@ -8,6 +9,7 @@ radius = 2.0
 height = 4.0
 
 [node name="TongTip" type="Node2D"]
+script = ExtResource("1_3nixq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6lfq6")
