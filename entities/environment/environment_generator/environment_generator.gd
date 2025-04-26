@@ -11,8 +11,8 @@ var screen_width = ProjectSettings.get_setting("display/window/size/viewport_wid
 @export var game_stats: GameStats
 
 func _ready() -> void:
-	meteorite_spawn_timer.timeout.connect(handle_spawn_meteorite.bind(METEORITE_SCENE, meteorite_spawn_timer, 1.5))
-	shipwreck_spawn_timer.timeout.connect(handle_spawn_shipwreck.bind(SHIPWRECK_SCENE, shipwreck_spawn_timer, 6.0))
+	meteorite_spawn_timer.timeout.connect(handle_spawn_meteorite.bind(METEORITE_SCENE, meteorite_spawn_timer, 2))
+	shipwreck_spawn_timer.timeout.connect(handle_spawn_shipwreck.bind(SHIPWRECK_SCENE, shipwreck_spawn_timer, 7.0))
 	
 	game_stats.score_changed.connect(func(new_score: int):
 		if new_score > 35:
