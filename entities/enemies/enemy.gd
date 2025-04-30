@@ -31,6 +31,7 @@ func _ready() -> void:
 func serialise() -> Dictionary:
 	var data = super.serialise()
 	data["health"] = health_component.health
+	data["velocity"] = move_component.velocity
 	
 	return data
 
@@ -38,3 +39,6 @@ func deserialise(data: Dictionary) -> void:
 	super.deserialise(data)
 	if data.has("health"):
 		health_component.health = data["health"]
+	
+	if data.has("velocity"):
+		move_component.velocity = data["velocity"]

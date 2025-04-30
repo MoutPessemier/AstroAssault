@@ -11,21 +11,15 @@ func serialise() -> Dictionary:
 	return {
 		"unique_id": get_unique_id(),
 		"scene_path": get_scene_file_path(),
-		"position": {
-			"x": position.x,
-			"y": position.y
-		},
+		"position": position,
 		"rotation": rotation,
-		"scale": {
-			"x": scale.x,
-			"y": scale.y
-		}
+		"scale": scale
 	}
 
 func deserialise(data: Dictionary) -> void:
 	if data.has("position"):
-		position = Vector2(data["position"]["x"], data["position"]["y"])
+		position = data["position"]
 	if data.has("rotation"):
 		rotation = data["rotation"]
 	if data.has("scale"):
-		scale = Vector2(data["scale"]["x"], data["scale"]["y"])
+		scale = data["scale"]
